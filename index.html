@@ -1,15 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <script src="scripts/siteplan.js" defer></script>
+    <script src="scripts/index.js" defer></script>
     <title>WDD 131 - Fundamentos de la Web dinámica - Alfonso Habana Rosales</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="WDD 131 - Fundamentos Web Dinámicos, I'm Alfonso Hababa Rosales, I study in BYU, this page is my practice to learn HTML, CSS and Javascripts code.">
     <meta name="author" content="Alfonso Habana Rosales">
-    <link rel="stylesheet" href="style/siteplan.css">
+    <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
+
+    <header>
+        <img src="profile.jpg" alt="Profile picture" width="50" height="50">
+        <span>Your Name</span>
+    </header>
+
+    <!-- Botón de hamburguesa -->
+    <button id="menu-toggle" class="menu-toggle">☰</button>
+
+    <!-- Menú desplegable -->
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Chamber</a></li>
+            <li><a href="#">GitHub Profile</a></li>
+            <li><a href="#">LinkedIn</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="left">
+            <h2>Section 1</h2>
+            <p>Content of the first section.</p>
+        </section>
+
+        <section class="right">
+            <h2>Section 2</h2>
+            <p>Content of the second section.</p>
+        </section>
+
+        <section class="full-width">
+            <h2>Web and Computer Programming Certificate</h2>
+            
+            <!-- Filtro -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="cse">CSE</button>
+                <button class="filter-btn" data-filter="wdd">WDD</button>
+            </div>
+
+            <!-- Certificados -->
+            <div class="certificates">
+                <button class="certificate highlighted">CSE 110</button>
+                <button class="certificate highlighted">WDD 130</button>
+                <button class="certificate highlighted">CSE 111</button>
+                <button class="certificate">CSE 210</button>
+                <button class="certificate highlighted">WDD 131</button>
+                <button class="certificate">WDD 231</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="copyright"></p>
+        <p id="lastModified"></p>
+    </footer>
 
 </body>
 </html>
