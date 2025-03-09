@@ -1,9 +1,11 @@
 
+//Fooder, año , pais y nombre en el pie de pagina.
 document.addEventListener("DOMContentLoaded", () => {
     const currentYear = new Date().getFullYear();
     const copyrightElement = document.getElementById("copyright");
-    copyrightElement.textContent = `© ${currentYear} Your Name | Your Country`;
+    copyrightElement.textContent = `© ${currentYear} Alfonso Habana Rosales | México`;
 
+    // Función para mostrar la última fecha de modificación
     const lastModifiedElement = document.getElementById("lastModified");
     const lastModifiedDate = new Date(document.lastModified);
     lastModifiedElement.textContent = `Last modified: ${lastModifiedDate.toLocaleString()}`;
