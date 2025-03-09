@@ -9,12 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
     lastModifiedElement.textContent = `Last modified: ${lastModifiedDate.toLocaleString()}`;
 });
 
-// Función para manejar el filtro de certificados
+// Función para manejar el menú desplegable y el filtro de certificados
 document.addEventListener("DOMContentLoaded", () => {
+    // Menú desplegable
+    const menuToggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("active");
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener("click", (event) => {
+        if (!navbar.contains(event.target) && !menuToggle.contains(event.target)) {
+            navbar.classList.remove("active");
+        }
+    });
+
+    // Filtro de certificados
     const filterButtons = document.querySelectorAll(".filter-btn");
     const certificates = document.querySelectorAll(".certificate");
 
-    // Agregar evento a cada botón de filtro
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
             // Remover clase 'active' de todos los botones
