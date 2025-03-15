@@ -1,70 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Business Chamber: Promoting business development in English with Spanish support.">
-        <meta name="author" content="Alfonso Habana Rosales">
-        <title>Business Chamber | Cámara de Negocios</title>
-        <link rel="stylesheet" href="styles/dindex.css"> <!-- Archivo CSS -->
-    </head>
-    <body>
-        <!-- Header -->
-        <header>
-            <div class="header-container">
-                <img id="logo" src="images/logo.png" alt="Business Chamber Logo">
-                <h1 id="site-title">Business Chamber</h1>
-                <nav>
-                    <button onclick="changeLanguage('en')">English</button>
-                    <button onclick="changeLanguage('es')">Español</button>
-                </nav>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Business Chamber: Promoting business development in English with Spanish support.">
+    <meta name="author" content="Alfonso Habana Rosales">
+    <title>Business Chamber | Cámara de Negocios</title>
+    <link rel="stylesheet" href="styles/dindex.css"> <!-- Archivo CSS -->
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img id="logo" src="images/logo.png" alt="Business Chamber Logo">
+            <h1 id="site-title">Business Chamber</h1>
+            <nav>
+                <button onclick="changeLanguage('en')">English</button>
+                <button onclick="changeLanguage('es')">Español</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Us Section -->
+        <section id="about-us">
+            <h2 id="about-title">About Us</h2>
+            <p id="about-content">
+                The Business Chamber is an institution dedicated to promoting business development in our region.
+            </p>
+        </section>
+
+        <!-- Weather Section -->
+        <section id="weather">
+            <h2>Weather Forecast</h2>
+            <div id="weather-info">
+                <p>Loading weather data...</p>
             </div>
-        </header>
+        </section>
 
-        <!-- Main Content -->
-        <main>
-            <!-- About Us Section -->
-            <section id="about-us">
-                <h2 id="about-title">About Us</h2>
-                <p id="about-content">
-                    The Business Chamber is an institution dedicated to promoting business development in our region.
-                </p>
-            </section>
-
-            <!-- Services Section -->
-            <section id="services">
-                <h2 id="services-title">Our Services</h2>
-                <ul id="services-list">
-                    <li>Business consulting</li>
-                    <li>Training and workshops</li>
-                    <li>International trade promotion</li>
-                    <li>Commercial dispute resolution</li>
-                </ul>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-left">
-                <p><strong>Cámara de Comercio Sauces 1</strong></p>
-                <p>Email: contact@camarasauces1.com</p>
-                <p>Teléfono: +52 55 1234 5678</p>
-                <p>Dirección: Sauces, Zumpango, México</p>
+        <!-- Events Section -->
+        <section id="events">
+            <h2>Upcoming Events</h2>
+            <div id="events-list">
+                <!-- Eventos se cargarán aquí -->
             </div>
+        </section>
 
-            <div class="footer-center">
-                <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-                <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
-                <a href="https://twitter.com" target="_blank"><img src="images/x.png" alt="X (Twitter)"></a>
-            </div>
+        <!-- Services Section -->
+        <section id="services">
+            <h2 id="services-title">Our Services</h2>
+            <ul id="services-list">
+                <li>Business consulting</li>
+                <li>Training and workshops</li>
+                <li>International trade promotion</li>
+                <li>Commercial dispute resolution</li>
+            </ul>
+        </section>
+    </main>
 
-            <div class="footer-right">
-                <p>Alfonso Habana</p>
-                <p>&copy; <span id="currentYear"></span> Cámara de Comercio Sauces 1</p>
-                <p>Última modificación: <span id="lastModified"></span></p>
-            </div>
-        </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <p><strong>Cámara de Comercio Sauces 1</strong></p>
+            <p>Email: contact@camarasauces1.com</p>
+            <p>Teléfono: +52 55 1234 5678</p>
+            <p>Dirección: Sauces, Zumpango, México</p>
+        </div>
 
-        <script src="scripts/dindex.js" defer></script> <!-- Archivo JS -->
-    </body>
+        <div class="footer-center">
+            <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+            <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+            <a href="https://twitter.com" target="_blank"><img src="images/x.png" alt="X (Twitter)"></a>
+        </div>
+
+        <div class="footer-right">
+            <p>Alfonso Habana</p>
+            <p>&copy; <span id="currentYear"></span> Cámara de Comercio Sauces 1</p>
+            <p>Última modificación: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+
+    <script src="scripts/dindex.js" defer></script> <!-- Archivo JS -->
+</body>
 </html>
