@@ -1,9 +1,22 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
 /* Header */
 header {
     display: flex;
-    flex-direction: column; /* Alineación vertical */
-    align-items: center; /* Centrado horizontal */
-    justify-content: center; /* Centrado vertical */
+    align-items: center;
+    justify-content: space-between; /* Alineación horizontal */
     background-color: #6c5ce7; /* Morado claro */
     color: white;
     padding: 15px;
@@ -14,7 +27,6 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px; /* Espaciado entre el contenido y el botón */
 }
 
 header img {
@@ -30,7 +42,7 @@ header span {
 /* Botón de hamburguesa */
 .menu-toggle {
     display: none; /* Oculto por defecto */
-    background-color: #6c5ce7; /* Mismo color que el header */
+    background-color: #4a4e69; /* Morado oscuro */
     color: white;
     border: none;
     font-size: 1.5rem;
@@ -41,7 +53,7 @@ header span {
 
 /* Nav */
 nav {
-    background-color: #6c5ce7; /* Mismo color que el header */
+    background-color: #4a4e69; /* Morado oscuro */
     padding: 10px 0;
     display: flex; /* Por defecto, el menú es horizontal */
     justify-content: center;
@@ -55,7 +67,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: white; /* Texto blanco */
+    color: white;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
@@ -65,6 +77,110 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #b3b3b3; /* Gris claro al pasar el mouse */
+}
+
+/* Main */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.left,
+.right {
+    flex: 1 1 calc(50% - 20px); /* Dos columnas en pantallas grandes */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+    flex: 1 1 100%; /* Una columna que ocupa todo el ancho */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Encabezados de las secciones */
+h2 {
+    background-color: #6c5ce7; /* Fondo morado claro */
+    color: white; /* Texto blanco para contraste */
+    text-align: center;
+    padding: 15px; /* Espaciado interno */
+    margin: -20px -20px 20px -20px; /* Ajuste para que cubra todo el ancho de la sección */
+    border-top-left-radius: 8px; /* Esquinas redondeadas arriba */
+    border-top-right-radius: 8px;
+}
+
+/* Footer */
+footer {
+    background-color: #6c5ce7; /* Morado claro */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Filtros */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: #f0f0f0; /* Gris claro */
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: #6c5ce7; /* Morado claro */
+    color: white;
+}
+
+/* Certificados */
+.certificates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.certificate {
+    background-color: #f0f0f0; /* Gris claro */
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.certificate.highlighted {
+    background-color: #6c5ce7; /* Morado claro */
+    color: white;
 }
 
 /* Responsive Design */
@@ -77,15 +193,14 @@ nav ul li a:hover {
     /* Ocultar el menú inicialmente */
     nav {
         display: none; /* Oculto por defecto */
-        flex-direction: row; /* Alinear los enlaces horizontalmente */
-        justify-content: space-around; /* Distribuir los enlaces */
+        flex-direction: column; /* Menú vertical */
         align-items: center;
         position: absolute;
-        top: 120px; /* Debajo del header */
+        top: 80px; /* Debajo del header */
         left: 0;
         width: 100%;
         z-index: 1000; /* Asegurarse de que esté encima de otros elementos */
-        background-color: #6c5ce7; /* Mismo color que el header */
+        background-color: #4a4e69; /* Morado oscuro */
         padding: 10px 0;
     }
 
@@ -96,7 +211,7 @@ nav ul li a:hover {
 
     /* Ajustar el contenido principal */
     main {
-        margin-top: 120px; /* Evitar superposición con el menú */
+        margin-top: 80px; /* Evitar superposición con el menú */
     }
 
     /* Ajustar las secciones principales */
