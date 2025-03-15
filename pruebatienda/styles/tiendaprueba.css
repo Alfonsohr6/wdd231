@@ -33,6 +33,16 @@ header .logo {
     gap: 1rem;
 }
 
+/* Logo Circular */
+.circular-logo {
+    width: 80px; /* Tamaño del logo */
+    height: 80px; /* Tamaño del logo */
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+    border-radius: 50%; /* Hace que el logo sea un círculo */
+    border: 3px solid white; /* Borde blanco para resaltar el círculo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
+}
+
 header .logo img {
     max-width: 80px;
     height: auto;

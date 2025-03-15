@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Formas de pago disponibles en Don Cui.">
-    <meta name="author" content="Alfonso Habana Rosales">
-    <title>Formas de Pago - Don Cui</title>
+    <title data-es="Formas de Pago - Don Cui" data-en="Payment Methods - Don Cui">Formas de Pago - Don Cui</title>
     <link rel="stylesheet" href="styles/tiendaprueba.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="images/logo.jpg" alt="Logo de Don Cui">
-            <h1>Don Cui</h1>
+            <img src="images/logo.png" alt="Logo de Don Cui" class="circular-logo">
+            <h1 data-es="Don Cui" data-en="Don Cui">Don Cui</h1>
         </div>
         <nav>
             <ul>
-                <li><a href="tiendaprueba.html">Productos / Products</a></li>
-                <li><a href="payment.html">Formas de Pago / Payment Methods</a></li>
-                <li><a href="rules.html">Reglamento / Rules</a></li>
-                <li><a href="update.html">Actualización / Update</a></li>
+                <li><a href="tiendaprueba.html" data-es="Productos" data-en="Products">Productos</a></li>
+                <li><a href="payment.html" data-es="Formas de Pago" data-en="Payment Methods">Formas de Pago</a></li>
+                <li><a href="rules.html" data-es="Reglamento" data-en="Rules">Reglamento</a></li>
+                <li><a href="update.html" data-es="Actualización" data-en="Update">Actualización</a></li>
             </ul>
         </nav>
         <div class="language-selector">
@@ -32,9 +30,7 @@
     <!-- Main Content -->
     <main>
         <h2 data-es="Formas de Pago" data-en="Payment Methods">Formas de Pago</h2>
-        <p style="color: red;">Esta página es una prueba. No ingrese información real.</p>
-
-        <!-- Tarjeta de Crédito -->
+        <p style="color: red;" data-es="Esta página es una prueba. No ingrese información real." data-en="This is a test page. Do not enter real information.">Esta página es una prueba. No ingrese información real.</p>
         <form id="credit-card-form">
             <h3 data-es="Pago con Tarjeta" data-en="Credit Card Payment">Pago con Tarjeta</h3>
             <label for="card-number" data-es="Número de Tarjeta" data-en="Card Number">Número de Tarjeta:</label>
@@ -45,26 +41,16 @@
             <input type="text" id="cvv" placeholder="123">
             <button type="submit" data-es="Pagar" data-en="Pay">Pagar</button>
         </form>
-
-        <!-- Transferencia Bancaria -->
-        <form id="bank-transfer-form">
-            <h3 data-es="Pago por Transferencia" data-en="Bank Transfer Payment">Pago por Transferencia</h3>
-            <p data-es="Detalles de la cuenta:" data-en="Account Details:">Detalles de la cuenta:</p>
-            <p>Banco Falso S.A.</p>
-            <p>Número de Cuenta: 1234567890</p>
-            <p>Titular: Don Cui</p>
-            <button type="submit" data-es="Confirmar Transferencia" data-en="Confirm Transfer">Confirmar Transferencia</button>
-        </form>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p id="footer-text">
-            &copy; <span id="current-year"></span> Don Cui. Todos los derechos reservados. / All rights reserved.
+            &copy; <span id="current-year"></span> Don Cui. 
+            <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
         </p>
-        <p>Firma: Alfonso Habana Rosales</p>
-        <p>Esta es una página de prueba. La tienda no es real. / This is a test page. The store is not real.</p>
-    
-        <!-- Datos de Contacto Falsos -->
+        <p data-es="Firma: Alfonso Habana Rosales" data-en="Signature: Alfonso Habana Rosales">Firma: Alfonso Habana Rosales</p>
+        <p data-es="Esta es una página de prueba. La tienda no es real." data-en="This is a test page. The store is not real.">Esta es una página de prueba. La tienda no es real.</p>
         <div class="contact-info">
             <h3 data-es="Contacto" data-en="Contact">Contacto</h3>
             <p data-es="Correo electrónico: contacto@doncui.com (Falso)" data-en="Email: contacto@doncui.com (Fake)">Correo electrónico: contacto@doncui.com (Falso)</p>
