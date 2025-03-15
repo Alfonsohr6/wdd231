@@ -87,6 +87,58 @@ main ul {
     padding-left: 20px;
 }
 
+/* Pronóstico del clima */
+#weather {
+    background-color: #FFFFFF; /* Fondo blanco */
+    color: #333333; /* Texto negro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
+    margin-bottom: 20px;
+}
+
+#weather h2 {
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white; /* Texto blanco */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+#weather-info {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Cuadro de eventos */
+#events {
+    background-color: #FFFFFF; /* Fondo blanco */
+    color: #333333; /* Texto negro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
+    margin-bottom: 20px;
+}
+
+#events h2 {
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white; /* Texto blanco */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+#events-list {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+#events-list p {
+    color: #888; /* Color gris para el mensaje de "no hay eventos" */
+}
+
 /* Footer */
 footer {
     display: flex;
