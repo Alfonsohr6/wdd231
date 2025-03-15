@@ -181,6 +181,7 @@ h2 {
 #cart-total {
     font-weight: bold;
     color: #FFA500; /* Naranja */
+    size: 2rem;
 }
 
 /* Footer */
