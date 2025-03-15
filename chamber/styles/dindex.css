@@ -1,0 +1,104 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #FFF7D1; /* Color claro para el fondo principal */
+    color: #333; /* Texto en gris oscuro */
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #FFF7D1; /* Fondo claro para el encabezado */
+    border: 2px solid #8B5DFF; /* Borde púrpura para destacar */
+    padding: 20px;
+    border-radius: 8px;
+    color: #563A9C; /* Títulos en púrpura oscuro */
+}
+
+header img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+nav button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #FFF7D1; /* Fondo claro para los botones */
+    border: 2px solid #8B5DFF; /* Borde púrpura para los botones */
+    color: #563A9C; /* Texto en púrpura oscuro */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #8B5DFF; /* Cambia a púrpura al pasar el cursor */
+    color: white; /* Texto blanco para contraste */
+    border-color: #563A9C; /* Borde más oscuro */
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #FFF7D1; /* Fondo claro para el contenido principal */
+    border: 2px solid #6A42C2; /* Borde púrpura para destacar */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #563A9C; /* Títulos en púrpura oscuro */
+}
+
+p, li {
+    color: #333; /* Texto en gris oscuro para el contenido */
+}
+
+/* Pie de página */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFF7D1; /* Fondo claro */
+    border-top: 2px solid #8B5DFF; /* Borde superior púrpura */
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #333; /* Texto en gris oscuro */
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1; /* Divide el espacio equitativamente */
+}
+
+.footer-left {
+    text-align: left; /* Alineación izquierda */
+}
+
+.footer-center {
+    text-align: center; /* Alineación centrada */
+}
+
+.footer-right {
+    text-align: right; /* Alineación derecha */
+}
+
+.footer-center img {
+    width: 30px; /* Tamaño de los íconos */
+    height: 30px;
+    margin: 0 5px; /* Espaciado entre los íconos */
+}
+
+.footer-right p {
+    margin: 5px 0; /* Espaciado entre los párrafos */
+}
