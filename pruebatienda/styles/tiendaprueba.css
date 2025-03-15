@@ -187,6 +187,26 @@ footer p {
     margin: 0.5rem 0;
 }
 
+/* Estilos para la sección de contacto */
+.contact-info {
+    margin-top: 1rem;
+}
+
+.contact-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+.contact-info p[style*="color: red;"] {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     header {
