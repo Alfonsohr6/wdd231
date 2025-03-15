@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Actualización de precios y productos en Don Cui.">
-    <meta name="author" content="Alfonso Habana Rosales">
     <title>Actualización - Don Cui</title>
     <link rel="stylesheet" href="styles/tiendaprueba.css">
 </head>
@@ -31,13 +29,26 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Section: Update -->
-        <section id="update">
-            <h2 data-es="Actualización de Precios y Productos" data-en="Price and Product Updates">Actualización de Precios y Productos</h2>
-            <p data-es="Los precios y productos se actualizan mensualmente." data-en="Prices and products are updated monthly.">
-                Los precios y productos se actualizan mensualmente.
-            </p>
-        </section>
+        <h2 data-es="Actualizar Productos" data-en="Update Products">Actualizar Productos</h2>
+
+        <!-- Formulario para Agregar/Eliminar Productos -->
+        <form id="product-form">
+            <h3 data-es="Agregar Producto" data-en="Add Product">Agregar Producto</h3>
+            <label for="product-name" data-es="Nombre del Producto" data-en="Product Name">Nombre del Producto:</label>
+            <input type="text" id="product-name" required>
+            <label for="product-description" data-es="Descripción" data-en="Description">Descripción:</label>
+            <textarea id="product-description" required></textarea>
+            <label for="product-price" data-es="Precio" data-en="Price">Precio:</label>
+            <input type="number" id="product-price" step="0.01" required>
+            <label for="product-image" data-es="Imagen (URL)" data-en="Image (URL)">Imagen (URL):</label>
+            <input type="url" id="product-image" required>
+            <button type="submit" data-es="Guardar Cambios" data-en="Save Changes">Guardar Cambios</button>
+        </form>
+
+        <h3 data-es="Lista de Productos" data-en="Product List">Lista de Productos</h3>
+        <ul id="product-list">
+            <!-- Aquí se mostrarán los productos dinámicamente -->
+        </ul>
     </main>
 
     <!-- Footer -->

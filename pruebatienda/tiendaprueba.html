@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tienda en línea Don Cui: Productos, formas de pago, políticas y más.">
+    <meta name="description" content="Tienda en línea Don Cui: Productos frescos y electrónicos.">
     <meta name="author" content="Alfonso Habana Rosales">
     <title>Tienda en Línea - Don Cui</title>
     <link rel="stylesheet" href="styles/tiendaprueba.css">
@@ -35,17 +35,54 @@
         <section id="products">
             <h2 data-es="Productos" data-en="Products">Productos</h2>
             <div class="product-list">
+                <!-- Producto 1: Lechuga -->
                 <div class="product">
-                    <h3 data-es="Producto 1" data-en="Product 1">Producto 1</h3>
-                    <p data-es="Descripción en español." data-en="Description in English.">Descripción en español.</p>
-                    <p data-es="Precio: $10.00 USD" data-en="Price: $10.00 USD">Precio: $10.00 USD</p>
+                    <img src="https://via.placeholder.com/250x200?text=Lechuga+Fresca" alt="Lechuga Fresca" class="product-image">
+                    <h3 data-es="Lechuga Fresca" data-en="Fresh Lettuce">Lechuga Fresca</h3>
+                    <p data-es="Hojas verdes y crujientes, perfectas para ensaladas." data-en="Crisp green leaves, perfect for salads.">Hojas verdes y crujientes, perfectas para ensaladas.</p>
+                    <p data-es="Precio: $2.50 USD" data-en="Price: $2.50 USD">Precio: $2.50 USD</p>
+                    <input type="number" min="0" value="0" class="quantity" data-price="2.50">
+                    <button class="add-to-cart" data-name="Lechuga Fresca">Agregar al Carrito</button>
                 </div>
+
+                <!-- Producto 2: Jitomate -->
                 <div class="product">
-                    <h3 data-es="Producto 2" data-en="Product 2">Producto 2</h3>
-                    <p data-es="Descripción en español." data-en="Description in English.">Descripción en español.</p>
-                    <p data-es="Precio: $15.00 USD" data-en="Price: $15.00 USD">Precio: $15.00 USD</p>
+                    <img src="https://via.placeholder.com/250x200?text=Jitomate+Rojo" alt="Jitomate Rojo" class="product-image">
+                    <h3 data-es="Jitomate Rojo" data-en="Red Tomato">Jitomate Rojo</h3>
+                    <p data-es="Jitomates jugosos y maduros, ideales para salsas." data-en="Juicy and ripe tomatoes, perfect for sauces.">Jitomates jugosos y maduros, ideales para salsas.</p>
+                    <p data-es="Precio: $1.75 USD" data-en="Price: $1.75 USD">Precio: $1.75 USD</p>
+                    <input type="number" min="0" value="0" class="quantity" data-price="1.75">
+                    <button class="add-to-cart" data-name="Jitomate Rojo">Agregar al Carrito</button>
+                </div>
+
+                <!-- Producto 3: Queso -->
+                <div class="product">
+                    <img src="https://via.placeholder.com/250x200?text=Queso+Fresco" alt="Queso Fresco" class="product-image">
+                    <h3 data-es="Queso Fresco" data-en="Fresh Cheese">Queso Fresco</h3>
+                    <p data-es="Queso suave y cremoso, ideal para acompañar cualquier platillo." data-en="Soft and creamy cheese, perfect to pair with any dish.">Queso suave y cremoso, ideal para acompañar cualquier platillo.</p>
+                    <p data-es="Precio: $5.00 USD" data-en="Price: $5.00 USD">Precio: $5.00 USD</p>
+                    <input type="number" min="0" value="0" class="quantity" data-price="5.00">
+                    <button class="add-to-cart" data-name="Queso Fresco">Agregar al Carrito</button>
+                </div>
+
+                <!-- Producto 4: Televisor -->
+                <div class="product">
+                    <img src="https://via.placeholder.com/250x200?text=Televisor+LED+55%22" alt="Televisor LED 55\"" class="product-image">
+                    <h3 data-es="Televisor LED 55\"" data-en="LED TV 55\"">Televisor LED 55"</h3>
+                    <p data-es="Televisor de alta definición con tecnología LED, perfecto para tu sala." data-en="High-definition LED TV, perfect for your living room.">Televisor de alta definición con tecnología LED, perfecto para tu sala.</p>
+                    <p data-es="Precio: $399.99 USD" data-en="Price: $399.99 USD">Precio: $399.99 USD</p>
+                    <input type="number" min="0" value="0" class="quantity" data-price="399.99">
+                    <button class="add-to-cart" data-name="Televisor LED 55\"">Agregar al Carrito</button>
                 </div>
             </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart">
+            <h2 data-es="Carrito de Compras" data-en="Shopping Cart">Carrito de Compras</h2>
+            <ul id="cart-items"></ul>
+            <p data-es="Total: $" data-en="Total: $">Total: $</p>
+            <span id="cart-total">0.00</span>
         </section>
     </main>
 
