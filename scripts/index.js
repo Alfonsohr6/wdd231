@@ -1,32 +1,29 @@
-
-//Fooder, año , pais y nombre en el pie de pagina.
-document.addEventListener("DOMContentLoaded", () => {
-    const currentYear = new Date().getFullYear();
-    const copyrightElement = document.getElementById("copyright");
-    copyrightElement.textContent = `© ${currentYear} Alfonso Habana Rosales | México`;
-
-    // Función para mostrar la última fecha de modificación
-    const lastModifiedElement = document.getElementById("lastModified");
-    const lastModifiedDate = new Date(document.lastModified);
-    lastModifiedElement.textContent = `Last modified: ${lastModifiedDate.toLocaleString()}`;
-});
-
 // Función para manejar el menú desplegable y el filtro de certificados
 document.addEventListener("DOMContentLoaded", () => {
     // Menú desplegable
     const menuToggle = document.getElementById("menu-toggle");
     const navbar = document.getElementById("navbar");
 
+    // Agregar evento al botón de hamburguesa
     menuToggle.addEventListener("click", () => {
-        navbar.classList.toggle("active");
+        navbar.classList.toggle("active"); // Alterna la clase 'active' en el menú
     });
 
     // Cerrar el menú si se hace clic fuera de él
     document.addEventListener("click", (event) => {
         if (!navbar.contains(event.target) && !menuToggle.contains(event.target)) {
-            navbar.classList.remove("active");
+            navbar.classList.remove("active"); // Quita la clase 'active' si se hace clic fuera
         }
     });
+
+    // Pie de página dinámico
+    const currentYear = new Date().getFullYear();
+    const copyrightElement = document.getElementById("copyright");
+    copyrightElement.textContent = `© ${currentYear} Alfonso Habana Rosales | México`;
+
+    const lastModifiedElement = document.getElementById("lastModified");
+    const lastModifiedDate = new Date(document.lastModified);
+    lastModifiedElement.textContent = `Last modified: ${lastModifiedDate.toLocaleString()}`;
 
     // Filtro de certificados
     const filterButtons = document.querySelectorAll(".filter-btn");
@@ -55,22 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializar con el filtro "All" activo
     document.querySelector(".filter-btn.active").click();
-});
-
-// Función para manejar el menú desplegable
-document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById("menu-toggle");
-    const navbar = document.getElementById("navbar");
-
-    // Alternar la clase 'active' en el menú al hacer clic en el botón
-    menuToggle.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-    });
-
-    // Cerrar el menú si se hace clic fuera de él
-    document.addEventListener("click", (event) => {
-        if (!navbar.contains(event.target) && !menuToggle.contains(event.target)) {
-            navbar.classList.remove("active");
-        }
-    });
 });
