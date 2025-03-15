@@ -41,12 +41,15 @@
             <input type="text" id="cvv" placeholder="123">
             <button type="submit" data-es="Pagar" data-en="Pay">Pagar</button>
         </form>
-        <div class="payment-info">
-            <label for="bank-account">Cuenta Bancaria:</label>
-            <input type="text" id="bank-account" value="123456789" readonly>
-            <label for="amount">Monto:</label>
-            <input type="text" id="amount" value="$100.00" readonly>
-        </div>
+        <!-- Transferencia Bancaria -->
+        <form id="bank-transfer-form">
+            <h3 data-es="Pago por Transferencia" data-en="Bank Transfer Payment">Pago por Transferencia</h3>
+            <p data-es="Detalles de la cuenta:" data-en="Account Details:">Detalles de la cuenta:</p>
+            <p>Banco Falso S.A.</p>
+            <p>Número de Cuenta: 1234567890</p>
+            <p>Titular: Don Cui</p>
+            <button type="submit" data-es="Confirmar Transferencia" data-en="Confirm Transfer">Confirmar Transferencia</button>
+        </form>
     </main>
 
     <!-- Footer -->
