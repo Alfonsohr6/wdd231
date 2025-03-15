@@ -7,34 +7,47 @@
 
 /* Estilo general */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background-color: #FFFFFF; /* Fondo blanco simple */
-    color: #000000; /* Texto negro */
+    color: #333333; /* Texto negro */
     padding: 20px;
 }
 
 /* Header */
 header {
     text-align: center;
-    background-color: #8B5DFF; /* Fondo morado */
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
     color: white; /* Texto blanco */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombreado */
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado más suave */
     margin-bottom: 20px;
 }
 
+header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 header img {
-    max-width: 150px;
-    margin-bottom: 10px;
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    flex-grow: 1;
 }
 
 nav button {
     margin: 5px;
     padding: 10px 15px;
-    background-color: #6A42C2; /* Morado más oscuro para botones */
-    color: white; /* Texto blanco */
+    background-color: #563A9C; /* Morado oscuro para botones */
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -42,25 +55,36 @@ nav button {
 }
 
 nav button:hover {
-    background-color: #563A9C; /* Morado aún más oscuro al pasar el cursor */
+    background-color: #4A318C; /* Morado aún más oscuro al pasar el cursor */
 }
 
 /* Secciones principales */
 main section {
     background-color: #FFFFFF; /* Fondo blanco */
-    color: #000000; /* Texto negro */
+    color: #333333; /* Texto negro */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombreado */
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
     margin-bottom: 20px;
 }
 
 main section h2 {
-    background-color: #8B5DFF; /* Fondo morado para títulos de secciones */
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
     color: white; /* Texto blanco */
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+main p, main ul {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+main ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
 
 /* Footer */
@@ -68,11 +92,11 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #8B5DFF; /* Fondo morado */
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
     color: white; /* Texto blanco */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombreado */
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
     margin-top: 20px;
 }
 
