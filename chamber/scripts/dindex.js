@@ -78,13 +78,15 @@ window.onload = () => {
 
 // Función para cargar el pronóstico del clima
 async function loadWeather() {
-    const apiKey = "TU_API_KEY"; // Reemplaza con tu clave de API de OpenWeatherMap
-    const city = "Zumpango"; // Ciudad para el pronóstico
+    const apiKey = "TU_API_KEY"; // Reemplaza con tu clave de API
+    const city = "Zumpango"; // Cambia a tu ciudad
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error("City not found");
+        if (!response.ok) {
+            throw new Error("City not found or API key invalid");
+        }
 
         const data = await response.json();
         const temp = data.main.temp;
@@ -98,7 +100,8 @@ async function loadWeather() {
             <p><strong>Condition:</strong> ${condition}</p>
         `;
     } catch (error) {
-        document.getElementById("weather-info").innerHTML = `<p>${translations.en.weatherError}</p>`;
+        console.error("Error fetching weather data:", error.message);
+        document.getElementById("weather-info").innerHTML = `<p>Error loading weather data.</p>`;
     }
 }
 
@@ -120,11 +123,3 @@ function updateEvents(message) {
         });
     }
 }
-window.onload = () => {
-    changeLanguage('en'); // Establecer inglés como idioma inicial
-
-    // Año actual y última modificación
-    const currentYear = new Date().getFullYear();
-    document.getElementById("currentYear").textContent = currentYear;
-    document.getElementById("lastModified").textContent = document.lastModified;
-};
