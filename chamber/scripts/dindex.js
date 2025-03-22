@@ -78,7 +78,7 @@ window.onload = () => {
 
 // Función para cargar el pronóstico del clima
 async function loadWeather() {
-    const apiKey = "TU_API_KEY"; // Reemplaza con tu clave de API
+    const apiKey = "06f42527f001d6fcc88d814b75fb67b9"; // Reemplaza con tu clave de API
     const city = "Zumpango"; // Cambia a tu ciudad
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
