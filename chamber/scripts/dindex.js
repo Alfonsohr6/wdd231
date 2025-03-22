@@ -27,7 +27,7 @@ const translations = {
             "Promoción del comercio internacional",
             "Resolución de conflictos comerciales"
         ],
-        logo: "images/logo-es.png",
+        logo: "images/logo.png",
         noEventsMessage: "No hay eventos disponibles por el momento.",
         weatherLoading: "Cargando datos del clima...",
         weatherError: "No se pudo cargar el pronóstico del clima."
