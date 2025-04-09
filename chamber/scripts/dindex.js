@@ -60,21 +60,40 @@ function changeLanguage(lang) {
     document.getElementById("weather-info").innerHTML = `<p>${translations[lang].weatherLoading}</p>`;
 }
 
-// Idioma predeterminado al cargar la página
-window.onload = () => {
-    changeLanguage('en'); // Establecer inglés como idioma inicial
+// Cargar contenido dinámicamente cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+    // Cargar header
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error("Error loading header:", error));
 
-    // Año actual y última modificación
-    const currentYear = new Date().getFullYear();
-    document.getElementById("currentYear").textContent = currentYear;
-    document.getElementById("lastModified").textContent = document.lastModified;
+    // Cargar footer
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+
+            // Actualizar año actual y fecha de última modificación
+            const currentYear = new Date().getFullYear();
+            document.getElementById("currentYear").textContent = currentYear;
+
+            const lastModified = new Date(document.lastModified).toLocaleString();
+            document.getElementById("lastModified").textContent = lastModified;
+        })
+        .catch(error => console.error("Error loading footer:", error));
+
+    // Idioma predeterminado al cargar la página
+    changeLanguage('en');
 
     // Cargar pronóstico del clima
     loadWeather();
 
     // Cargar eventos
     updateEvents(translations.en.noEventsMessage); // Mensaje predeterminado
-};
+});
 
 // Función para cargar el pronóstico del clima
 async function loadWeather() {
