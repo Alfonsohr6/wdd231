@@ -174,3 +174,24 @@ footer {
     height: 30px;
     margin: 0 5px;
 }
+
+/* Responsive para join.css */
+@media (max-width: 768px) {
+    main input {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    main button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .error-message, .success-message {
+        font-size: 0.8rem;
+    }
+}

@@ -160,10 +160,20 @@ footer {
     color: #6A42C2;
 }
 
-/* Estilo responsive para dispositivos móviles */
+/* Responsive para directory.css */
 @media (max-width: 768px) {
+    #business-list li {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
     .modal-content {
         margin: 20% auto;
         padding: 15px;
+        width: 95%;
+    }
+
+    .close-modal {
+        font-size: 20px;
     }
 }
