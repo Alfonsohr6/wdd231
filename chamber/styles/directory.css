@@ -122,3 +122,48 @@ footer {
 .footer-right {
     text-align: right; /* Alineación derecha */
 }
+
+/* Estilos para el modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #8B5DFF;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #6A42C2;
+}
+
+/* Estilo responsive para dispositivos móviles */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 20% auto;
+        padding: 15px;
+    }
+}

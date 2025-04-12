@@ -21,8 +21,20 @@
                 Explore the list of local businesses that are part of the Business Chamber.
             </p>
             <ul id="business-list">
-                <!-- Lista de negocios se cargará aquí -->
+                <!-- Las empresas se cargarán dinámicamente aquí -->
             </ul>
+        
+            <!-- Modal para mostrar detalles de la empresa -->
+            <div id="business-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3 id="modal-business-name"></h3>
+                    <p><strong>Owner:</strong> <span id="modal-owner-name"></span></p>
+                    <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                    <p><strong>Phone:</strong> <span id="modal-phone"></span></p>
+                    <p><strong>Address:</strong> <span id="modal-address"></span></p>
+                </div>
+            </div>
         </section>
     </main>
 
