@@ -1,4 +1,26 @@
+// Textos en inglés y español
+const translations = {
+    en: {
+        directoryTitle: "Business Directory",
+        directoryContent: "Explore the list of local businesses that are part of the Business Chamber.",
+        businessList: [
+            "Business 1: Description of Business 1",
+            "Business 2: Description of Business 2",
+            "Business 3: Description of Business 3"
+        ]
+    },
+    es: {
+        directoryTitle: "Directorio de Negocios",
+        directoryContent: "Explora la lista de negocios locales que forman parte de la Cámara de Negocios.",
+        businessList: [
+            "Negocio 1: Descripción del Negocio 1",
+            "Negocio 2: Descripción del Negocio 2",
+            "Negocio 3: Descripción del Negocio 3"
+        ]
+    }
+};
 
+// Datos falsos de empresas
 const businessData = {
     en: [
         {
@@ -86,11 +108,21 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+// Función para cambiar el idioma
+function changeLanguage(lang) {
+    // Actualiza los textos según el idioma seleccionado
+}
+
 // Cargar contenido dinámicamente cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     // Cargar header
     fetch('header.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error loading header: ${response.status}`);
+            }
+            return response.text();
+        })
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
         })
@@ -98,7 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cargar footer
     fetch('footer.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error loading footer: ${response.status}`);
+            }
+            return response.text();
+        })
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
 

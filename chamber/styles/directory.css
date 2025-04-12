@@ -88,41 +88,6 @@ main ul {
     padding-left: 20px;
 }
 
-/* Footer */
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
-    color: white; /* Texto blanco */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
-    margin-top: 20px;
-}
-
-.footer-left, .footer-center, .footer-right {
-    flex: 1; /* Divide el espacio equitativamente */
-}
-
-.footer-left {
-    text-align: left; /* Alineación izquierda */
-}
-
-.footer-center {
-    text-align: center; /* Alineación centrada */
-}
-
-.footer-center img {
-    width: 30px; /* Tamaño de los íconos */
-    height: 30px;
-    margin: 0 5px; /* Espaciado entre los íconos */
-}
-
-.footer-right {
-    text-align: right; /* Alineación derecha */
-}
-
 /* Estilos para el modal */
 .modal {
     display: none; /* Oculto por defecto */
@@ -160,7 +125,7 @@ footer {
     color: #6A42C2;
 }
 
-/* Responsive para directory.css */
+/* Estilo responsive para dispositivos móviles */
 @media (max-width: 768px) {
     #business-list li {
         font-size: 0.9rem;

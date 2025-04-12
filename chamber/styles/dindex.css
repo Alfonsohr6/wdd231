@@ -18,30 +18,31 @@ body {
 header {
     text-align: center;
     background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
-    color: white; /* Texto blanco */
+    color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado más suave */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-header .header-container {
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-header img {
-    max-width: 100px;
+.header-logo {
+    max-width: 100px; /* Tamaño del logo */
     margin-right: 20px;
-    border-radius: 50%; /* Hace que el logo sea un círculo */
+    border-radius: 10px; /* Bordes redondeados para el logo */
 }
 
-header h1 {
+#site-title {
     font-size: 2rem;
     margin: 0;
     flex-grow: 1;
+    text-align: center;
 }
 
 nav button {
@@ -146,10 +147,10 @@ footer {
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
-    color: white; /* Texto blanco */
+    color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
@@ -158,21 +159,21 @@ footer {
 }
 
 .footer-left {
-    text-align: left; /* Alineación izquierda */
+    text-align: left;
 }
 
 .footer-center {
-    text-align: center; /* Alineación centrada */
-}
-
-.footer-right {
-    text-align: right; /* Alineación derecha */
+    text-align: center;
 }
 
 .footer-center img {
     width: 30px; /* Tamaño de los íconos */
     height: 30px;
-    margin: 0 5px; /* Espaciado entre los íconos */
+    margin: 0 5px;
+}
+
+.footer-right {
+    text-align: right;
 }
 
 /* Responsive design para dispositivos móviles */
@@ -189,13 +190,13 @@ footer {
         padding: 15px;
     }
 
-    header img {
+    header .header-logo {
         margin-right: 0;
         margin-bottom: 10px;
         max-width: 80px; /* Reducir el tamaño del logo */
     }
 
-    header h1 {
+    header #site-title {
         font-size: 1.5rem; /* Reducir el tamaño del título */
         text-align: center;
     }
