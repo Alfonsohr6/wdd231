@@ -1,50 +1,176 @@
-#join-section {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#join-section h2 {
+/* Variables globales */
+:root {
+    --primary-color: #8B5DFF;
+    --secondary-color: #6A42C2;
+    --text-color: #333333;
+    --white: #FFFFFF;
+    --error-color: red;
+    --success-color: green;
+}
+
+/* Estilo general */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+/* Header */
+header {
     text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-#business-form {
+header .header-container {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-#business-form label {
-    font-weight: bold;
+header img {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
 }
 
-#business-form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    flex-grow: 1;
 }
 
-#business-form button {
-    padding: 10px;
-    background-color: #8B5DFF;
-    color: white;
+nav button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#business-form button:hover {
-    background-color: #6A42C2;
+nav button:hover {
+    background-color: darken(var(--secondary-color), 10%);
 }
 
-#form-message {
+/* Secciones principales */
+main section {
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+main section h2 {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+main p,
+main ul {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+main label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+main input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+main button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+main button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Mensajes de error y éxito */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none; /* Oculto por defecto */
+}
+
+.success-message {
+    color: var(--success-color);
+    font-weight: bold;
     text-align: center;
     margin-top: 20px;
-    color: green;
-    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    flex: 1;
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+.footer-center img {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
 }
