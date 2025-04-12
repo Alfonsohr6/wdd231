@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #FFFFFF; /* Fondo blanco simple */
+    color: #333333; /* Texto negro */
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado más suave */
+    margin-bottom: 20px;
+}
+
+header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header img {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 50%; /* Hace que el logo sea un círculo */
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    flex-grow: 1;
+}
+
+nav button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #563A9C; /* Morado oscuro para botones */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #4A318C; /* Morado aún más oscuro al pasar el cursor */
+}
+
+/* Secciones principales */
+main section {
+    background-color: #FFFFFF; /* Fondo blanco */
+    color: #333333; /* Texto negro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
+    margin-bottom: 20px;
+}
+
+main section h2 {
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white; /* Texto blanco */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+main p, main ul {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+main ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombreado */
+    margin-top: 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1; /* Divide el espacio equitativamente */
+}
+
+.footer-left {
+    text-align: left; /* Alineación izquierda */
+}
+
+.footer-center {
+    text-align: center; /* Alineación centrada */
+}
+
+.footer-center img {
+    width: 30px; /* Tamaño de los íconos */
+    height: 30px;
+    margin: 0 5px; /* Espaciado entre los íconos */
+}
+
+.footer-right {
+    text-align: right; /* Alineación derecha */
+}

@@ -6,7 +6,7 @@
     <meta name="description" content="Directory of local businesses in the Business Chamber.">
     <meta name="author" content="Alfonso Habana Rosales">
     <title>Business Directory | Directorio de Negocios</title>
-    <link rel="stylesheet" href="styles/dindex.css">
+    <link rel="stylesheet" href="styles/directory.css">
 </head>
 <body>
     <!-- Header -->
@@ -16,37 +16,19 @@
     <main>
         <!-- Directory Section -->
         <section id="directory">
-            <h2>Business Directory</h2>
-            <p>Explore the list of local businesses that are part of the Business Chamber.</p>
-            <ul>
-                <li><strong>Business 1:</strong> Description of Business 1</li>
-                <li><strong>Business 2:</strong> Description of Business 2</li>
-                <li><strong>Business 3:</strong> Description of Business 3</li>
+            <h2 id="directory-title">Business Directory</h2>
+            <p id="directory-content">
+                Explore the list of local businesses that are part of the Business Chamber.
+            </p>
+            <ul id="business-list">
+                <!-- Lista de negocios se cargará aquí -->
             </ul>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-left">
-            <p><strong>Cámara de Comercio Sauces 1</strong></p>
-            <p>Email: contact@camarasauces1.com</p>
-            <p>Teléfono: +52 55 1234 5678</p>
-            <p>Dirección: Sauces, Zumpango, México</p>
-        </div>
-    
-        <div class="footer-center">
-            <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-            <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
-            <a href="https://twitter.com" target="_blank"><img src="images/x.png" alt="X (Twitter)"></a>
-        </div>
-    
-        <div class="footer-right">
-            <p>Alfonso Habana</p>
-            <p>&copy; <span id="currentYear"></span> Cámara de Comercio Sauces 1</p>
-            <p>Última modificación: <span id="lastModified"></span></p>
-        </div>
-    </footer>
-    <script src="scripts/dindex.js" defer></script>
+    <div id="footer-placeholder"></div>
+
+    <script src="scripts/directory.js" defer></script>
 </body>
 </html>
