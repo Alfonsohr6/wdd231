@@ -125,6 +125,41 @@ main ul {
     color: #6A42C2;
 }
 
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2); /* Degradado morado */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1; /* Divide el espacio equitativamente */
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.footer-center img {
+    width: 30px; /* Tamaño de los íconos */
+    height: 30px;
+    margin: 0 5px;
+}
+
+.footer-right {
+    text-align: right;
+}
+
 /* Estilo responsive para dispositivos móviles */
 @media (max-width: 768px) {
     #business-list li {

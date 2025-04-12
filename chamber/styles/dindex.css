@@ -32,10 +32,10 @@ header {
     flex-wrap: wrap;
 }
 
-.header-logo {
-    max-width: 100px; /* Tamaño del logo */
+header img {
+    max-width: 100px;
     margin-right: 20px;
-    border-radius: 10px; /* Bordes redondeados para el logo */
+    border-radius: 50%; /* Hace que el logo sea un círculo */
 }
 
 #site-title {
