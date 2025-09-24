@@ -160,6 +160,37 @@ footer {
     text-align: right;
 }
 
+/* Estilos para las tarjetas de miembros (vista tipo grid) */
+.member-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.member-card img {
+    max-width: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+/* Estilos para la vista tipo lista (sin imagen) */
+.member-list-item {
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Ocultar imágenes en vista tipo lista */
+.list-view .member-card img,
+.member-list-item img {
+    display: none;
+}
+
 /* Estilo responsive para dispositivos móviles */
 @media (max-width: 768px) {
     #business-list li {
