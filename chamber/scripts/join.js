@@ -104,35 +104,34 @@ document.getElementById("business-form").addEventListener("submit", function (ev
 
 // Cargar contenido dinámicamente cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
-    // Cargar header
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        })
-        .catch(error => console.error("Error loading header:", error));
+  // Cargar header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    })
+    .catch(error => console.error("Error loading header:", error));
 
-    // Cargar footer
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
+  // Cargar footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
 
-            // Actualizar año actual y fecha de última modificación
-            const currentYear = new Date().getFullYear();
-            document.getElementById("currentYear").textContent = currentYear;
+      const currentYear = new Date().getFullYear();
+      document.getElementById("currentYear").textContent = currentYear;
 
-            const lastModified = new Date(document.lastModified).toLocaleString();
-            document.getElementById("lastModified").textContent = lastModified;
-        })
-        .catch(error => console.error("Error loading footer:", error));
-    
-        const timestampField = document.getElementById("timestamp");
-        if (timestampField) {
-            timestampField.value = new Date().toISOString();
-        }
+      const lastModified = new Date(document.lastModified).toLocaleString();
+      document.getElementById("lastModified").textContent = lastModified;
+    })
+    .catch(error => console.error("Error loading footer:", error));
 
+  // Timestamp
+  const timestampField = document.getElementById("timestamp");
+  if (timestampField) {
+    timestampField.value = new Date().toISOString();
+  }
 
-    // Idioma predeterminado al cargar la página
-    changeLanguage('en');
+  // Idioma predeterminado al cargar la página
+  changeLanguage('en');
 });
