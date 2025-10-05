@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You for Joining</title>
+  <link rel="stylesheet" href="styles/join.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="thankyou-section">
+      <h2>Thank You for Joining the Chamber!</h2>
+      <p>We appreciate your interest in becoming a member. Here is the information you submitted:</p>
+
+      <div class="submitted-info">
+        <p><strong>First Name:</strong> <span id="firstName"></span></p>
+        <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+        <p><strong>Organization:</strong> <span id="organization"></span></p>
+        <p><strong>Form Submitted:</strong> <span id="timestamp"></span></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Cargar header y footer
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+
+      // Mostrar datos enviados
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("firstName").textContent = params.get("firstName") || "—";
+      document.getElementById("lastName").textContent = params.get("lastName") || "—";
+      document.getElementById("email").textContent = params.get("email") || "—";
+      document.getElementById("phone").textContent = params.get("phone") || "—";
+      document.getElementById("organization").textContent = params.get("organization") || "—";
+      document.getElementById("timestamp").textContent = params.get("timestamp") || "—";
+    });
+  </script>
+</body>
+</html>

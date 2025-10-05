@@ -126,6 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("lastModified").textContent = lastModified;
         })
         .catch(error => console.error("Error loading footer:", error));
+    
+        const timestampField = document.getElementById("timestamp");
+        if (timestampField) {
+            timestampField.value = new Date().toISOString();
+        }
+
 
     // Idioma predeterminado al cargar la página
     changeLanguage('en');

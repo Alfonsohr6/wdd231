@@ -1,34 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Join the Business Chamber and register your business.">
-  <meta name="author" content="Alfonso Habana Rosales">
-  <title>Join the Chamber | Membership Application</title>
-  <link rel="icon" href="images/favicon.ico">
-  <!-- Meta etiquetas para redes sociales -->
-  <meta property="og:title" content="Join the Chamber | Membership Application">
-  <meta property="og:description" content="Apply to become a member of our business chamber and enjoy exclusive benefits.">
-  <meta property="og:image" content="images/social-preview.png">
-  <meta property="og:url" content="https://yourdomain.com/chamber/join.html">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/join.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join the Chamber</title>
+  <link rel="stylesheet" href="styles/join.css" />
 </head>
 <body>
   <div id="header-placeholder"></div>
 
   <main>
-    <section id="join-section">
-      <h2 id="join-title">Join the Chamber</h2>
-      <p id="join-content">Fill out the form below to register your business in the Business Chamber network.</p>
-      <form id="business-form" novalidate>
-        <div class="form-group">
-          <label for="business-name" id="business-name-label">Business Name:</label>
-          <input type="text" id="business-name" name="business-name" required>
-          <p id="business-name-error" class="error-message"></p>
-        </div>
-        <div class="form-group">
-          <label for="owner-name" id="owner-name-label">Owner Name:</label>
-          <input type="text" id="owner-name"
+    <section class="join-form-section">
+      <h2>Membership Application</h2>
+      <form method="get" action="thankyou.html">
+        <label>
+          First Name:
+          <input type="text" name="firstName" title="Your first name" autocomplete="given-name" required />
+        </label>
+
+        <label>
+          Last Name:
+          <input type="text" name="lastName" title="Your last name" autocomplete="family-name" required />
+        </label>
+
+        <label>
+          Organizational Title:
+          <input type="text" name="orgTitle" title="Your title in the organization" autocomplete="organization-title"
+                 pattern="[A-Za-z\s\-]{7,}" />
+        </label>
+
+        <label>
+          Email:
+          <input type="email" name="email" title="Your email address" autocomplete="email" required
+                 placeholder="example@domain.com" />
+        </label>
+
+        <label>
+          Mobile Phone:
+          <input type="tel" name="phone" title="Your mobile phone number" autocomplete="tel" required />
+        </label>
+
+        <label>
+          Organization Name:
+          <input type="text" name="organization" title="Business or organization name" autocomplete="organization" required />
+        </label>
+
+        <label>
+          Membership Level:
+          <select name="membership" title="Select membership level" required>
+            <option value="">-- Select Level --</option>
+            <option value="np">NP Membership (Free)</option>
+            <option value="bronze">Bronze Membership</option>
+            <option value="silver">Silver Membership</option>
+            <option value="gold">Gold Membership</option>
+          </select>
+        </label>
+
+        <label>
+          Business Description:
+          <textarea name="description" title="Describe your business"></textarea>
+        </label>
+
+        <input type="hidden" name="timestamp" id="timestamp" />
+
+        <input type="submit" value="Apply for Membership" />
+      </form>
+    </section>
+
+    <aside class="membership-cards">
+      <div class="card np-card">
+        <h3>NP Membership</h3>
+        <p>Perfect for nonprofits. Free membership.</p>
+        <a href="#" onclick="openModal('np')">More Info</a>
+      </div>
+      <div class="card bronze-card">
+        <h3>Bronze Membership</h3>
+        <p>Basic benefits and event access.</p>
+        <a href="#" onclick="openModal('bronze')">More Info</a>
+      </div>
+      <div class="card silver-card">
+        <h3>Silver Membership</h3>
+        <p>Includes training and spotlight ads.</p>
+        <a href="#" onclick="openModal('silver')">More Info</a>
+      </div>
+      <div class="card gold-card">
+        <h3>Gold Membership</h3>
+        <p>Full benefits, discounts, and homepage features.</p>
+        <a href="#" onclick="openModal('gold')">More Info</a>
+      </div>
+    </aside>
+
+    <!-- Modals -->
+    <div id="modal-np" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('np')">&times;</span>
+        <h3>NP Membership Benefits</h3>
+        <p>Free access to events, networking, and basic listings.</p>
+      </div>
+    </div>
+
+    <div id="modal-bronze" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('bronze')">&times;</span>
+        <h3>Bronze Membership Benefits</h3>
+        <p>Includes event access, basic training, and directory listing.</p>
+      </div>
+    </div>
+
+    <div id="modal-silver" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('silver')">&times;</span>
+        <h3>Silver Membership Benefits</h3>
+        <p>Includes spotlight ads, training sessions, and event discounts.</p>
+      </div>
+    </div>
+
+    <div id="modal-gold" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('gold')">&times;</span>
+        <h3>Gold Membership Benefits</h3>
+        <p>Full homepage features, premium ads, VIP event access, and discounts.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="scripts/join.js" defer></script>
+</body>
+</html>
