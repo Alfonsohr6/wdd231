@@ -52,34 +52,29 @@ header img {
   flex-wrap: wrap;
   justify-content: center;
   padding: 0;
+  margin-top: 15px;
 }
 
-.nav-menu li a {
+.nav-menu li {
+  display: inline-block;
+}
+
+.nav-menu li a,
+.nav-menu li button {
   text-decoration: none;
   color: var(--white);
+  background-color: var(--secondary-color);
   font-weight: bold;
   padding: 8px 12px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.nav-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-nav button {
-    margin: 5px;
-    padding: 10px 15px;
-    background-color: #563A9C; /* Morado oscuro para botones */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-nav button:hover {
-    background-color: #4A318C; /* Morado aún más oscuro al pasar el cursor */
+.nav-menu li a:hover,
+.nav-menu li button:hover {
+  background-color: #4A318C;
 }
 
 /* Secciones principales */
