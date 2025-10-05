@@ -15,6 +15,7 @@
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/directory.css">
+  
 </head>
 <body>
   <header>
@@ -22,8 +23,15 @@
       <img src="images/logo.png" alt="Business Chamber Logo" class="header-logo">
       <h1 id="site-title">Business Chamber</h1>
       <nav>
-        <button onclick="changeLanguage('en')">English</button>
-        <button onclick="changeLanguage('es')">Español</button>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="discover.html">Discover</a></li>
+          <li><a href="directory.html">Directory</a></li>
+          <li><a href="join.html">Join</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><button onclick="changeLanguage('en')">EN</button></li>
+          <li><button onclick="changeLanguage('es')">ES</button></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -38,17 +46,6 @@
       </div>
       <div id="business-list" class="grid-view"></div>
     </section>
-    <nav>
-  <ul class="nav-menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="discover.html">Discover</a></li>
-    <li><a href="directory.html">Directory</a></li>
-    <li><a href="join.html">Join</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><button onclick="changeLanguage('en')">EN</button></li>
-    <li><button onclick="changeLanguage('es')">ES</button></li>
-  </ul>
-</nav>
 
   </main>
 
