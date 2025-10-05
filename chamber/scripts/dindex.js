@@ -141,4 +141,45 @@ function updateEvents(message) {
             eventsList.appendChild(p);
         });
     }
+
+}
+
+async function loadSpotlights() {
+  try {
+    const response = await fetch('data/members.json');
+    if (!response.ok) throw new Error("Failed to load members.json");
+
+    const members = await response.json();
+
+    // Filtrar por gold y silver
+    const spotlightCandidates = members.filter(m => m.membership === 2 || m.membership === 3);
+
+    // Seleccionar aleatoriamente 2 o 3 miembros
+    const selected = [];
+    const count = Math.min(spotlightCandidates.length, Math.floor(Math.random() * 2) + 2); // 2 o 3
+    while (selected.length < count && spotlightCandidates.length > 0) {
+      const index = Math.floor(Math.random() * spotlightCandidates.length);
+      selected.push(spotlightCandidates.splice(index, 1)[0]);
+    }
+
+    // Mostrar en el contenedor
+    const container = document.getElementById("spotlight-container");
+    container.innerHTML = "";
+
+    selected.forEach(member => {
+      const card = document.createElement("div");
+      card.className = "spotlight-card";
+      card.innerHTML = `
+        <img src="images/${member.image}" alt="${member.name} logo">
+        <h3>${member.name}</h3>
+        <p><strong>Phone:</strong> ${member.phone}</p>
+        <p><strong>Address:</strong> ${member.address}</p>
+        <p><strong>Website:</strong> <a href="${member.website}" target="_blank">${member.website}</a></p>
+        <p><strong>Membership:</strong> ${member.membership === 3 ? 'Gold' : 'Silver'}</p>
+      `;
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error loading spotlights:", error);
+  }
 }

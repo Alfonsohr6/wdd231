@@ -193,6 +193,64 @@ footer {
     text-align: right;
 }
 
+#hero {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #6A42C2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #4A318C;
+}
+
+#spotlights {
+  margin-top: 20px;
+}
+
+.spotlight-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.spotlight-card img {
+  max-width: 100px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 /* Responsive design para dispositivos móviles */
 @media (max-width: 768px) {
     /* Ajustes generales */
@@ -283,4 +341,22 @@ footer {
         width: 25px;
         height: 25px;
     }
+
+     #hero .hero-overlay {
+          top: 10%;
+          padding: 15px;
+        }
+    
+        .cta-button {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+        }
+    
+        .spotlight-card {
+          padding: 15px;
+        }
+    
+        .spotlight-card img {
+          max-width: 80px;
+        }
 }
