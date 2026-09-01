@@ -1,65 +1,60 @@
-[
-  {
-    "name": "Tech Solutions",
-    "address": "123 Tech Ave, Silicon Valley",
-    "phone": "123-456-7890",
-    "website": "https://techsolutions.com",
-    "image": "tech.png",
-    "membership": 3,
-    "description": "Innovative technology services for businesses."
-  },
-  {
-    "name": "Green Garden",
-    "address": "456 Green St, Eco City",
-    "phone": "987-654-3210",
-    "website": "https://greengarden.org",
-    "image": "garden.png",
-    "membership": 2,
-    "description": "Sustainable landscaping and garden design."
-  },
-  {
-    "name": "Smart Finance",
-    "address": "789 Money Blvd, Capital Town",
-    "phone": "555-123-4567",
-    "website": "https://smartfinance.com",
-    "image": "finance.png",
-    "membership": 1,
-    "description": "Financial consulting for small businesses."
-  },
-  {
-    "name": "Eco Transport",
-    "address": "321 Transit Rd, Mobility City",
-    "phone": "444-987-6543",
-    "website": "https://ecotransport.net",
-    "image": "transport.png",
-    "membership": 2,
-    "description": "Green transportation solutions."
-  },
-  {
-    "name": "Creative Minds",
-    "address": "654 Art Lane, Imaginaria",
-    "phone": "222-333-4444",
-    "website": "https://creativeminds.co",
-    "image": "creative.png",
-    "membership": 3,
-    "description": "Design and branding agency."
-  },
-  {
-    "name": "Health First",
-    "address": "987 Wellness Way, Healthyville",
-    "phone": "111-222-3333",
-    "website": "https://healthfirst.org",
-    "image": "health.png",
-    "membership": 1,
-    "description": "Community health and wellness center."
-  },
-  {
-    "name": "Local Roots Market",
-    "address": "159 Farmers Rd, Zumpango",
-    "phone": "777-888-9999",
-    "website": "https://localroots.mx",
-    "image": "market.png",
-    "membership": 2,
-    "description": "Organic produce and local goods."
-  }
-]
+{
+  "members": [
+    {
+      "name": "Innovación Tecnológica S.A.",
+      "address": "Av. Principal 123, Zumpango",
+      "phone": "+52 55 1111 2222",
+      "website": "https://www.innovacion.com",
+      "image": "biz1.jpg",
+      "membershipLevel": 3
+    },
+    {
+      "name": "Café y Pan Artesanal El Trigo",
+      "address": "Calle Central 45, Zumpango",
+      "phone": "+52 55 3333 4444",
+      "website": "https://www.eltrigo.com",
+      "image": "biz2.jpg",
+      "membershipLevel": 2
+    },
+    {
+      "name": "Ferretería y Construcción El Martillo",
+      "address": "Blvd. Industrial 789, Zumpango",
+      "phone": "+52 55 5555 6666",
+      "website": "https://www.elmartillo.com",
+      "image": "biz3.jpg",
+      "membershipLevel": 1
+    },
+    {
+      "name": "Supermercado La Economía",
+      "address": "Av. del Mercado 50, Zumpango",
+      "phone": "+52 55 7777 8888",
+      "website": "https://www.laeconomia.com",
+      "image": "biz4.jpg",
+      "membershipLevel": 3
+    },
+    {
+      "name": "Librería y Papelería Saber",
+      "address": "Calle Escolar 12, Zumpango",
+      "phone": "+52 55 9999 0000",
+      "website": "https://www.libreriasaber.com",
+      "image": "biz5.jpg",
+      "membershipLevel": 1
+    },
+    {
+      "name": "Servicios Médicos y Farmacia San José",
+      "address": "Av. Salud 300, Zumpango",
+      "phone": "+52 55 2222 3333",
+      "website": "https://www.sanjosemedico.com",
+      "image": "biz6.jpg",
+      "membershipLevel": 2
+    },
+    {
+      "name": "Transportes y Logística Rápida",
+      "address": "Zona Industrial Lote 8, Zumpango",
+      "phone": "+52 55 4444 5555",
+      "website": "https://www.logisticarapida.com",
+      "image": "biz7.jpg",
+      "membershipLevel": 3
+    }
+  ]
+}

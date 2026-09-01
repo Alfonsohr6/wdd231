@@ -1,123 +1,94 @@
-// Variable global para idioma actual
-let currentLang = 'en';
-
-// Traducciones internas (solo para ti)
-const translations = {
-  en: {
-    directoryTitle: "Business Directory",
-    directoryContent: "Explore the list of local businesses that are part of the Business Chamber.",
-    membershipLevels: {
-      1: "Member",
-      2: "Silver",
-      3: "Gold"
-    }
-  },
-  es: {
-    directoryTitle: "Directorio de Negocios",
-    directoryContent: "Explora la lista de negocios locales que forman parte de la Cámara de Negocios.",
-    membershipLevels: {
-      1: "Miembro",
-      2: "Plata",
-      3: "Oro"
-    }
-  }
-};
-
-// Función para cambiar idioma
-function changeLanguage(lang) {
-  currentLang = lang;
-  document.getElementById("site-title").textContent = "Business Chamber";
-  document.getElementById("directory-title").textContent = translations[lang].directoryTitle;
-  document.getElementById("directory-content").textContent = translations[lang].directoryContent;
-}
-
-// Función para obtener etiqueta de membresía
-function getMembershipLabel(level) {
-  return translations[currentLang].membershipLevels[level] || "Unknown";
-}
-
-// Función para mostrar miembros en el contenedor
-function displayMembers(members) {
-  const container = document.getElementById("business-list");
-  container.innerHTML = ""; // Limpiar contenido anterior
-
-  members.forEach(member => {
-    const card = document.createElement("div");
-    card.className = container.classList.contains("list-view") ? "member-list-item" : "member-card";
-
-    card.innerHTML = `
-      <img src="images/${member.image}" alt="${member.name} logo">
-      <h3>${member.name}</h3>
-      <p><strong>Address:</strong> ${member.address}</p>
-      <p><strong>Phone:</strong> ${member.phone}</p>
-      <p><strong>Website:</strong> <a href="${member.website}" target="_blank">${member.website}</a></p>
-      <p><strong>Membership:</strong> ${getMembershipLabel(member.membership)}</p>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-// Función para cargar miembros desde JSON
-async function loadMembers() {
-  try {
-    const response = await fetch('data/members.json');
-    if (!response.ok) throw new Error("Failed to load members.json");
-
-    const members = await response.json();
-    displayMembers(members);
-  } catch (error) {
-    console.error("Error loading members:", error);
-  }
-}
-
-// Alternar vista entre grid y lista
-function setupViewToggle() {
-  const container = document.getElementById("business-list");
-  document.getElementById("grid-view").addEventListener("click", () => {
-    container.classList.remove("list-view");
-    container.classList.add("grid-view");
-    loadMembers(); // Recargar para aplicar estilo
-  });
-
-  document.getElementById("list-view").addEventListener("click", () => {
-    container.classList.remove("grid-view");
-    container.classList.add("list-view");
-    loadMembers(); // Recargar para aplicar estilo
-  });
-}
-
-// Cargar contenido dinámico al iniciar
 document.addEventListener("DOMContentLoaded", () => {
-  // Cargar header externo si se usa
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      const header = document.getElementById('header-placeholder');
-      if (header) header.innerHTML = data;
-    })
-    .catch(error => console.error("Error loading header:", error));
+    // 1. Pie de página dinámico (Año y última modificación)
+    const currentYearElement = document.getElementById("currentYear");
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
 
-  // Cargar footer externo si se usa
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      const footer = document.getElementById('footer-placeholder');
-      if (footer) footer.innerHTML = data;
+    const lastModifiedElement = document.getElementById("lastModified");
+    if (lastModifiedElement) {
+        lastModifiedElement.textContent = document.lastModified;
+    }
 
-      // Actualizar año y fecha de modificación
-      const currentYear = new Date().getFullYear();
-      document.getElementById("currentYear").textContent = currentYear;
+    // 2. Carga de miembros mediante Async/Await y Fetch
+    const url = "data/members.json";
+    const businessList = document.getElementById("business-list");
 
-      const lastModified = new Date(document.lastModified).toLocaleString();
-      document.getElementById("lastModified").textContent = lastModified;
-    })
-    .catch(error => console.error("Error loading footer:", error));
+    async function getMembers() {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error("No se pudo cargar el archivo JSON");
+            }
+            const data = await response.json();
+            displayMembers(data.members);
+        } catch (error) {
+            console.error("Error al cargar los datos de los miembros:", error);
+        }
+    }
 
-  // Idioma por defecto
-  changeLanguage('en');
+    // 3. Función para mostrar los miembros en el DOM
+    const displayMembers = (members) => {
+        businessList.innerHTML = ""; // Limpiar contenedor
 
-  // Inicializar vista y cargar miembros
-  setupViewToggle();
-  loadMembers();
+        members.forEach((member) => {
+            const card = document.createElement("section");
+            card.classList.add("member-card");
+
+            // Elementos de la tarjeta
+            const img = document.createElement("img");
+            img.setAttribute("src", `images/${member.image}`);
+            img.setAttribute("alt", `Logo de ${member.name}`);
+            img.setAttribute("loading", "lazy");
+            img.setAttribute("width", "150");
+            img.setAttribute("height", "150");
+
+            const name = document.createElement("h3");
+            name.textContent = member.name;
+
+            const address = document.createElement("p");
+            address.textContent = member.address;
+
+            const phone = document.createElement("p");
+            phone.textContent = member.phone;
+
+            const website = document.createElement("a");
+            website.setAttribute("href", member.website);
+            website.setAttribute("target", "_blank");
+            website.textContent = member.website;
+
+            const level = document.createElement("p");
+            level.textContent = `Nivel de Membresía: ${member.membershipLevel}`;
+            level.classList.add(`level-${member.membershipLevel}`);
+
+            // Agregar elementos a la tarjeta
+            card.appendChild(img);
+            card.appendChild(name);
+            card.appendChild(address);
+            card.appendChild(phone);
+            card.appendChild(website);
+            card.appendChild(level);
+
+            businessList.appendChild(card);
+        });
+    };
+
+    // Llamada inicial para obtener los datos
+    getMembers();
+
+    // 4. Funcionalidad de botones para alternar entre Grid y List
+    const gridButton = document.getElementById("grid-view");
+    const listButton = document.getElementById("list-view");
+
+    if (gridButton && listButton) {
+        gridButton.addEventListener("click", () => {
+            businessList.classList.add("grid-view");
+            businessList.classList.remove("list-view");
+        });
+
+        listButton.addEventListener("click", () => {
+            businessList.classList.add("list-view");
+            businessList.classList.remove("grid-view");
+        });
+    }
 });
