@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <script src="scripts/index.js" defer></script>
-    <title>WDD 231 - Web Frontend Development - Alfonso Habana Rosales</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="WDD 231 - Web Frontend Development, I'm Alfonso Hababa Rosales, I study in BYU, this page is my practice to learn HTML, CSS and JavaScript code.">
+    <title>WDD 231 - Web Frontend Development - Alfonso Habana Rosales</title>
+    <meta name="description" content="WDD 231 - Web Frontend Development, I'm Alfonso Habana Rosales, I study at BYU-Idaho, this page is my practice to learn HTML, CSS and JavaScript code.">
     <meta name="author" content="Alfonso Habana Rosales">
-    <link rel="stylesheet" href="styles/index.css"> <!-- Carpeta corregida -->
+    <link rel="stylesheet" href="styles/index.css">
+    <script src="scripts/index.js" defer></script>
 </head>
 <body>
 
     <header>
         <div class="header-content">
-            <img src="images/profile.jpg" alt="Profile picture" width="50" height="50">
+            <img src="images/profile.jpg" alt="Profile picture of Alfonso Habana" width="50" height="50">
             <span>Alfonso Habana Rosales</span> 
         </div>
-        <!-- Botón de hamburguesa -->
-        <button id="menu-toggle" class="menu-toggle">☰</button>
+        <!-- Botón de hamburguesa para menú móvil -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open Navigation Menu">☰</button>
     </header>
 
-    <!-- Menú desplegable -->
+    <!-- Menú de navegación -->
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="https://alfonsohr6.github.io/wdd231/chamber/directory.html">Chamber</a></li>
-            <li><a href="#">GitHub Profile</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="https://alfonsohr6.github.io/wdd231/chamber/directory.html" target="_blank">Chamber</a></li>
+            <li><a href="https://github.com/alfonsohr6" target="_blank">GitHub Profile</a></li>
+            <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
         </ul>
     </nav>
 
@@ -34,41 +34,37 @@
         <!-- Sección 1: Course Work -->
         <section class="left">
             <h2>Course Work</h2>
-            <p>Content of the first section.</p>
+            <p>Welcome to my course portfolio for WDD 231.</p>
             <p>Check out my <a href="https://alfonsohr6.github.io/wdd231/pruebatienda/tiendaprueba.html" target="_blank">Tienda Prueba</a>.</p>
         </section>
 
         <!-- Sección 2: Arequipa, Peru -->
         <section class="right">
             <h2>Arequipa, Peru</h2>
-            <img src="images/templo4.jpeg" alt="Arequipa Temple" style="border-radius: 8px;">
+            <img src="images/templo4.jpeg" alt="Arequipa Temple" style="border-radius: 8px; width: 100%; height: auto;">
         </section>
 
-        <!-- Sección 3: Certificados -->
+        <!-- Sección 3: Certificados / Cursos -->
         <section class="full-width">
             <h2>Web and Computer Programming Certificate</h2>
             
-            <!-- Filtro -->
+            <!-- Botones de Filtro -->
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="cse">CSE</button>
                 <button class="filter-btn" data-filter="wdd">WDD</button>
             </div>
-
-            <!-- Certificados -->
-            <div class="certificates">
-                <button class="certificate cse highlighted">CSE 110</button>
-                <button class="certificate wdd highlighted">WDD 130</button>
-                <button class="certificate cse highlighted">CSE 111</button>
-                <button class="certificate cse">CSE 210</button>
-                <button class="certificate wdd highlighted">WDD 231</button>
-                <button class="certificate wdd">WDD 231</button>
-            </div>
+        
+            <!-- Contenedor dinámico para los cursos -->
+            <div id="course-container" class="certificates"></div>
+        
+            <!-- Contenedor para el total de créditos -->
+            <p id="total-credits" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
         </section>
     </main>
 
     <footer>
-        <p id="copyright"></p>
+        <p>© <span id="currentyear"></span> - Alfonso Habana Rosales - Peru</p>
         <p id="lastModified"></p>
     </footer>
 
