@@ -1,3 +1,143 @@
+/* Estilos generales y reseteo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Encabezado (Header) */
+header {
+    background-color: #6c5ce7;
+    color: white;
+    padding: 15px 20px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+#site-title {
+    font-size: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Menú de Navegación */
+nav {
+    background-color: #4a4e69;
+    padding: 10px 0;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+    background-color: #6c5ce7;
+}
+
+.nav-menu button {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-menu button:hover {
+    background-color: #5b4be2;
+}
+
+/* Contenido Principal (Main) */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+#directory {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#directory h2 {
+    color: #6c5ce7;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+#directory p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Botones de Control de Vista (Grid / List) */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.view-toggle button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.view-toggle button:hover,
+.view-toggle button.active {
+    background-color: #6c5ce7;
+    color: white;
+    border-color: #6c5ce7;
+}
+
 /* Vista de Cuadrícula (Grid) por defecto */
 #business-list.grid-view {
     display: grid;
@@ -11,14 +151,28 @@
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 #business-list.grid-view .member-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+    max-width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#business-list.grid-view .member-card h3 {
     margin-bottom: 10px;
-    display: block; /* Asegura que la imagen se muestre en grid */
+    color: #333;
+}
+
+#business-list.grid-view .member-card p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
 
 /* Vista de Lista (List) sin imágenes */
@@ -29,16 +183,95 @@
 }
 
 #business-list.list-view .member-card {
-    background-color: #f4f4f4;
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     text-align: left;
+}
+
+#business-list.list-view .member-card h3 {
+    flex: 1 1 200px;
+    color: #6c5ce7;
+}
+
+#business-list.list-view .member-card p {
+    margin: 0;
+    flex: 1 1 150px;
+    font-size: 0.9rem;
 }
 
 /* Ocultar estrictamente la imagen en la vista de lista */
 #business-list.list-view .member-card img {
     display: none;
+}
+
+/* Pie de Página (Footer) */
+footer {
+    background-color: #4a4e69;
+    color: white;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1 1 250px;
+}
+
+.footer-left p, .footer-right p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.footer-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-center img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s;
+}
+
+.footer-center img:hover {
+    opacity: 0.7;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-right {
+        text-align: center;
+    }
+
+    #business-list.list-view .member-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

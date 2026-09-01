@@ -40,25 +40,26 @@ document.addEventListener("DOMContentLoaded", () => {
             img.setAttribute("src", `images/${member.image}`);
             img.setAttribute("alt", `Logo de ${member.name}`);
             img.setAttribute("loading", "lazy");
-            img.setAttribute("width", "150");
-            img.setAttribute("height", "150");
+            img.setAttribute("width", "120");
+            img.setAttribute("height", "120");
 
             const name = document.createElement("h3");
             name.textContent = member.name;
 
             const address = document.createElement("p");
-            address.textContent = member.address;
+            address.innerHTML = `<strong>Address:</strong> ${member.address}`;
 
             const phone = document.createElement("p");
-            phone.textContent = member.phone;
+            phone.innerHTML = `<strong>Phone:</strong> ${member.phone}`;
 
             const website = document.createElement("a");
             website.setAttribute("href", member.website);
             website.setAttribute("target", "_blank");
             website.textContent = member.website;
 
+            const levelText = member.membershipLevel === 3 ? "Gold" : member.membershipLevel === 2 ? "Silver" : "Member";
             const level = document.createElement("p");
-            level.textContent = `Nivel de Membresía: ${member.membershipLevel}`;
+            level.innerHTML = `<strong>Membership:</strong> ${levelText}`;
             level.classList.add(`level-${member.membershipLevel}`);
 
             // Agregar elementos a la tarjeta
@@ -84,11 +85,15 @@ document.addEventListener("DOMContentLoaded", () => {
         gridButton.addEventListener("click", () => {
             businessList.classList.add("grid-view");
             businessList.classList.remove("list-view");
+            gridButton.classList.add("active");
+            listButton.classList.remove("active");
         });
 
         listButton.addEventListener("click", () => {
             businessList.classList.add("list-view");
             businessList.classList.remove("grid-view");
+            listButton.classList.add("active");
+            gridButton.classList.remove("active");
         });
     }
 });
