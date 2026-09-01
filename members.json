@@ -1,0 +1,23 @@
+{
+  "familyName": "Rosales",
+  "moveInDate": "2023-05-15",
+  "memberCount": 3,
+  "visitedByBishopric": true,
+  "individuals": [
+    {
+      "name": "Carlos Rosales",
+      "gender": "Male",
+      "birthdate": "1985-04-12"
+    },
+    {
+      "name": "Maria Castro",
+      "gender": "Female",
+      "birthdate": "1988-09-20"
+    },
+    {
+      "name": "Alfonso Rosales",
+      "gender": "Male",
+      "birthdate": "2002-12-06"
+    }
+  ]
+}
