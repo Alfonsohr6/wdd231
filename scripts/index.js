@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Manejo dinámico del footer (Año actual y última modificación)
+
     const currentYear = new Date().getFullYear();
     const currentYearEl = document.getElementById("currentYear");
     if (currentYearEl) currentYearEl.textContent = currentYear;
@@ -7,14 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastModifiedEl = document.getElementById("lastModified");
     if (lastModifiedEl) lastModifiedEl.textContent = document.lastModified;
 
-    // 2. Cargar funciones principales
     loadWeather();
     loadSpotlights();
 });
 
-// Función para obtener clima actual y pronóstico a 3 días desde OpenWeatherMap
 async function loadWeather() {
-    const apiKey = "06f42527f001d6fcc88d814b75fb67b9"; // Clave de OpenWeatherMap
+    const apiKey = "06f42527f001d6fcc88d814b75fb67b9";
     const city = "Zumpango,MX";
     
     // Endpoints para clima actual y pronóstico
@@ -37,10 +35,8 @@ async function loadWeather() {
         const currentData = await currentRes.json();
         const forecastData = await forecastRes.json();
 
-        // Filtrar pronóstico para tomar una lectura por día (cada 24h / índice de cada 8 bloques de 3 horas)
         const dailyForecasts = forecastData.list.filter((item, index) => index % 8 === 0).slice(0, 3);
 
-        // Construcción del HTML dinámico
         let weatherHTML = `
             <div class="current-weather">
                 <p><strong>Location:</strong> ${currentData.name}</p>
@@ -70,7 +66,7 @@ async function loadWeather() {
     }
 }
 
-// Función para obtener miembros Silver y Gold de forma aleatoria (Spotlights)
+
 async function loadSpotlights() {
     const container = document.getElementById("spotlight-container");
     if (!container) return;
@@ -80,9 +76,9 @@ async function loadSpotlights() {
         if (!response.ok) throw new Error("Failed to load members dataset");
 
         const data = await response.json();
-        const members = data.members || data; // Adapta la estructura del JSON
+        const members = data.members || data; 
 
-        // Filtrar miembros cuyo nivel de membresía sea Silver (2) o Gold (3)
+        
         const eligibleMembers = members.filter(m => m.membershipLevel === 2 || m.membershipLevel === 3 || m.membership === 'Silver' || m.membership === 'Gold');
 
         // Seleccionar aleatoriamente 2 o 3 miembros
@@ -94,7 +90,7 @@ async function loadSpotlights() {
             selectedMembers.push(eligibleMembers.splice(randomIndex, 1)[0]);
         }
 
-        // Renderizar las tarjetas
+        
         container.innerHTML = "";
         selectedMembers.forEach(member => {
             const levelName = (member.membershipLevel === 3 || member.membership === 'Gold') ? 'Gold' : 'Silver';
@@ -117,3 +113,34 @@ async function loadSpotlights() {
         container.innerHTML = `<p>Unable to load business spotlights.</p>`;
     }
 }
+
+
+function openModal(modalId) {
+    const modal = document.getElementById(`modal-${modalId}`);
+    if (modal) {
+        modal.style.display = "block";
+    }
+}
+
+
+function closeModal(modalId) {
+    const modal = document.getElementById(`modal-${modalId}`);
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+window.addEventListener("click", (event) => {
+    if (event.target.classList.contains("modal")) {
+        event.target.style.display = "none";
+    }
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        const activeModals = document.querySelectorAll(".modal");
+        activeModals.forEach(modal => {
+            modal.style.display = "none";
+        });
+    }
+});
