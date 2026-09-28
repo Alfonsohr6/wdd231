@@ -5,45 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Business Chamber: Promoting business development in English with Spanish support.">
   <meta name="author" content="Alfonso Habana Rosales">
-  <title>Business Chamber | Cámara de Negocios</title>
+  <title>Business Chamber | Home</title>
   <link rel="icon" href="images/favicon.ico">
+  
   <!-- Meta etiquetas para redes sociales -->
-  <meta property="og:title" content="Business Chamber | Cámara de Negocios">
+  <meta property="og:title" content="Business Chamber | Home">
   <meta property="og:description" content="Promoting business development in our region.">
   <meta property="og:image" content="images/social-preview.png">
-  <meta property="og:url" content="https://yourdomain.com/chamber/index.html">
+  <meta property="og:url" content="https://alfonsohr6.github.io/wdd231/chamber/index.html">
   <meta property="og:type" content="website">
+
   <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/dindex.css">
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
+
   <header>
     <div class="header-container">
       <img src="images/logo.png" alt="Business Chamber Logo" class="header-logo">
       <h1 id="site-title">Business Chamber</h1>
       <nav>
         <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="discover.html">Discover</a></li>
           <li><a href="directory.html">Directory</a></li>
           <li><a href="join.html">Join</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><button onclick="changeLanguage('en')">EN</button></li>
-          <li><button onclick="changeLanguage('es')">ES</button></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Imagen Hero e invitación Call To Action -->
     <section id="hero">
       <img src="images/hero.jpg" alt="Welcome to the Chamber" class="hero-image">
       <div class="hero-overlay">
-        <h2>Welcome to the Chamber</h2>
-        <a href="join.html" class="cta-button">Join Now</a>
+        <h2>Welcome to the Business Chamber</h2>
+        <a href="join.html" class="cta-button">Join the Chamber</a>
       </div>
     </section>
     
+    <!-- Pronóstico del clima (Actual y a 3 días) -->
     <section id="weather">
       <h2>Weather Forecast</h2>
       <div id="weather-info">
@@ -51,41 +54,46 @@
       </div>
     </section>
 
+    <!-- Sección de eventos -->
     <section id="events">
       <h2>Upcoming Events</h2>
-      <div id="events-list"></div>
+      <div id="events-list">
+        <p>Networking Breakfast - Next Tuesday at 8:00 AM</p>
+        <p>Business Expo 2026 - October 15th</p>
+      </div>
     </section>
 
-    <section id="services">
-      <h2 id="services-title">Our Services</h2>
-      <ul id="services-list">
-        <li>Business consulting</li>
-        <li>Training and workshops</li>
-        <li>International trade promotion</li>
-        <li>Commercial dispute resolution</li>
-      </ul>
+    <!-- Anuncios destacados (Spotlights) de miembros Gold/Silver -->
+    <section id="spotlights">
+      <h2>Member Spotlights</h2>
+      <div id="spotlight-container" class="spotlight-grid">
+        <!-- Generado dinámicamente con JavaScript -->
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-left">
-      <p><strong>Cámara de Comercio Sauces 1</strong></p>
-      <p>Email: contact@camarasauces1.com</p>
-      <p>Phone: +52 55 1234 5678</p>
-      <p>Address: Sauces, Zumpango, México</p>
-    </div>
-    <div class="footer-center">
-      <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-      <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
-      <a href="https://twitter.com" target="_blank"><img src="images/x.png" alt="X (Twitter)"></a>
-    </div>
-    <div class="footer-right">
-      <p>Alfonso Habana</p>
-      <p>WDD 231</p>
-      <p>&copy; <span id="currentYear"></span> Cámara de Comercio Sauces 1</p>
-      <p>Last modified: <span id="lastModified"></span></p>
+    <div class="footer-container">
+      <div class="footer-left">
+        <p><strong>Cámara de Comercio Sauces 1</strong></p>
+        <p>Email: contact@camarasauces1.com</p>
+        <p>Phone: +52 55 1234 5678</p>
+        <p>Address: Sauces, Zumpango, México</p>
+      </div>
+      <div class="footer-center">
+        <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://twitter.com" target="_blank"><img src="images/x.png" alt="X (Twitter)"></a>
+      </div>
+      <div class="footer-right">
+        <p>Alfonso Habana</p>
+        <p>WDD 231</p>
+        <p>&copy; <span id="currentYear"></span> Cámara de Comercio Sauces 1</p>
+        <p>Last modified: <span id="lastModified"></span></p>
+      </div>
     </div>
   </footer>
-  <script src="scripts/dindex.js" defer></script>
+
+  <script src="scripts/index.js" defer></script>
 </body>
 </html>

@@ -1,141 +1,119 @@
-// Función principal que se ejecuta cuando el DOM está completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- 1. CONFIGURACIÓN DEL MENÚ MÓVIL ---
-    const menuToggle = document.getElementById("menu-toggle");
-    const navbar = document.getElementById("navbar");
+    // 1. Manejo dinámico del footer (Año actual y última modificación)
+    const currentYear = new Date().getFullYear();
+    const currentYearEl = document.getElementById("currentYear");
+    if (currentYearEl) currentYearEl.textContent = currentYear;
 
-    if (menuToggle && navbar) {
-        // Alternar visibilidad del menú al hacer clic en el botón de hamburguesa
-        menuToggle.addEventListener("click", () => {
-            navbar.classList.toggle("active");
-        });
+    const lastModifiedEl = document.getElementById("lastModified");
+    if (lastModifiedEl) lastModifiedEl.textContent = document.lastModified;
 
-        // Cerrar el menú si el usuario hace clic fuera de él en dispositivos móviles
-        document.addEventListener("click", (event) => {
-            if (!navbar.contains(event.target) && !menuToggle.contains(event.target)) {
-                navbar.classList.remove("active");
-            }
-        });
-    }
-
-    // --- 2. PIE DE PÁGINA DINÁMICO ---
-    const currentYearElement = document.getElementById("currentyear");
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-    }
-
-    const lastModifiedElement = document.getElementById("lastModified");
-    if (lastModifiedElement) {
-        const lastModifiedDate = new Date(document.lastModified);
-        lastModifiedElement.textContent = `Last modified: ${lastModifiedDate.toLocaleString()}`;
-    }
-
-    // --- 3. DATOS DE LOS CURSOS (Arreglo de Objetos) ---
-    const courses = [
-        {
-            subject: 'CSE',
-            number: 110,
-            title: 'Introduction to Programming',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: true
-        },
-        {
-            subject: 'WDD',
-            number: 130,
-            title: 'Web Fundamentals',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: true
-        },
-        {
-            subject: 'CSE',
-            number: 111,
-            title: 'Programming with Functions',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: true
-        },
-        {
-            subject: 'CSE',
-            number: 210,
-            title: 'Programming with Classes',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: false
-        },
-        {
-            subject: 'WDD',
-            number: 131,
-            title: 'Dynamic Web Fundamentals',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: true
-        },
-        {
-            subject: 'WDD',
-            number: 231,
-            title: 'Web Frontend Development I',
-            credits: 2,
-            certificate: 'Web and Computer Programming',
-            completed: true
-        }
-    ];
-
-    // --- 4. FUNCIÓN PARA RENDERIZAR LOS CURSOS Y CALCULAR CRÉDITOS ---
-    function displayCourses(filteredCourses) {
-        const container = document.getElementById("course-container");
-        if (!container) return;
-
-        // Limpiar el contenedor antes de renderizar
-        container.innerHTML = "";
-
-        // Crear dinámicamente cada botón/tarjeta de curso
-        filteredCourses.forEach(course => {
-            const courseBtn = document.createElement("button");
-            courseBtn.classList.add("certificate");
-            courseBtn.classList.add(course.subject.toLowerCase());
-
-            // Marcar visualmente si el curso ya fue completado
-            if (course.completed) {
-                courseBtn.classList.add("highlighted");
-            }
-
-            courseBtn.textContent = `${course.subject} ${course.number}`;
-            container.appendChild(courseBtn);
-        });
-
-        // Calcular el total de créditos utilizando la función reduce()
-        const totalCredits = filteredCourses.reduce((sum, course) => sum + course.credits, 0);
-        const creditsElement = document.getElementById("total-credits");
-        if (creditsElement) {
-            creditsElement.textContent = `Total Credits Required: ${totalCredits}`;
-        }
-    }
-
-    // --- 5. CONFIGURACIÓN DE LOS FILTROS DE CURSOS ---
-    const filterButtons = document.querySelectorAll(".filter-btn");
-
-    filterButtons.button = filterButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            // Remover la clase 'active' de todos los botones de filtro
-            filterButtons.forEach(btn => btn.classList.remove("active"));
-            // Agregar la clase 'active' al botón seleccionado
-            button.classList.add("active");
-
-            const filter = button.getAttribute("data-filter");
-
-            // Filtrar los cursos según la categoría elegida
-            if (filter === "all") {
-                displayCourses(courses);
-            } else {
-                const filtered = courses.filter(course => course.subject.toLowerCase() === filter);
-                displayCourses(filtered);
-            }
-        });
-    });
-
-    // Inicializar la vista mostrando todos los cursos por defecto
-    displayCourses(courses);
+    // 2. Cargar funciones principales
+    loadWeather();
+    loadSpotlights();
 });
+
+// Función para obtener clima actual y pronóstico a 3 días desde OpenWeatherMap
+async function loadWeather() {
+    const apiKey = "06f42527f001d6fcc88d814b75fb67b9"; // Clave de OpenWeatherMap
+    const city = "Zumpango,MX";
+    
+    // Endpoints para clima actual y pronóstico
+    const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+    const weatherContainer = document.getElementById("weather-info");
+
+    try {
+        // Peticiones simultáneas con Promise.all
+        const [currentRes, forecastRes] = await Promise.all([
+            fetch(currentUrl),
+            fetch(forecastUrl)
+        ]);
+
+        if (!currentRes.ok || !forecastRes.ok) {
+            throw new Error("Weather service unavailable");
+        }
+
+        const currentData = await currentRes.json();
+        const forecastData = await forecastRes.json();
+
+        // Filtrar pronóstico para tomar una lectura por día (cada 24h / índice de cada 8 bloques de 3 horas)
+        const dailyForecasts = forecastData.list.filter((item, index) => index % 8 === 0).slice(0, 3);
+
+        // Construcción del HTML dinámico
+        let weatherHTML = `
+            <div class="current-weather">
+                <p><strong>Location:</strong> ${currentData.name}</p>
+                <p><strong>Current Temp:</strong> ${Math.round(currentData.main.temp)}°C</p>
+                <p><strong>Condition:</strong> ${currentData.weather[0].description}</p>
+            </div>
+            <hr class="weather-divider">
+            <div class="forecast-section">
+                <h4>3-Day Forecast:</h4>
+                <ul class="forecast-list">
+        `;
+
+        dailyForecasts.forEach(day => {
+            const date = new Date(day.dt * 1000);
+            const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+            weatherHTML += `
+                <li><strong>${dayName}:</strong> ${Math.round(day.main.temp)}°C - ${day.weather[0].description}</li>
+            `;
+        });
+
+        weatherHTML += `</ul></div>`;
+        weatherContainer.innerHTML = weatherHTML;
+
+    } catch (error) {
+        console.error("Error loading weather:", error);
+        weatherContainer.innerHTML = `<p>Unable to load weather information at this time.</p>`;
+    }
+}
+
+// Función para obtener miembros Silver y Gold de forma aleatoria (Spotlights)
+async function loadSpotlights() {
+    const container = document.getElementById("spotlight-container");
+    if (!container) return;
+
+    try {
+        const response = await fetch('data/members.json');
+        if (!response.ok) throw new Error("Failed to load members dataset");
+
+        const data = await response.json();
+        const members = data.members || data; // Adapta la estructura del JSON
+
+        // Filtrar miembros cuyo nivel de membresía sea Silver (2) o Gold (3)
+        const eligibleMembers = members.filter(m => m.membershipLevel === 2 || m.membershipLevel === 3 || m.membership === 'Silver' || m.membership === 'Gold');
+
+        // Seleccionar aleatoriamente 2 o 3 miembros
+        const selectedMembers = [];
+        const count = Math.min(eligibleMembers.length, Math.floor(Math.random() * 2) + 2); // Devuelve 2 o 3
+
+        while (selectedMembers.length < count && eligibleMembers.length > 0) {
+            const randomIndex = Math.floor(Math.random() * eligibleMembers.length);
+            selectedMembers.push(eligibleMembers.splice(randomIndex, 1)[0]);
+        }
+
+        // Renderizar las tarjetas
+        container.innerHTML = "";
+        selectedMembers.forEach(member => {
+            const levelName = (member.membershipLevel === 3 || member.membership === 'Gold') ? 'Gold' : 'Silver';
+            
+            const card = document.createElement("div");
+            card.className = `spotlight-card level-${levelName.toLowerCase()}`;
+            card.innerHTML = `
+                <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+                <h3>${member.name}</h3>
+                <p><strong>Phone:</strong> ${member.phone}</p>
+                <p><strong>Address:</strong> ${member.address}</p>
+                <p><strong>Website:</strong> <a href="${member.website}" target="_blank" rel="noopener">${member.website}</a></p>
+                <p class="membership-tag"><strong>Membership:</strong> ${levelName}</p>
+            `;
+            container.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Error loading spotlights:", error);
+        container.innerHTML = `<p>Unable to load business spotlights.</p>`;
+    }
+}
