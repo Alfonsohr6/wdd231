@@ -1,0 +1,272 @@
+/* Reset básico y variables */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333333;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #8B5DFF, #6A42C2);
+  color: white;
+  padding: 15px 20px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#site-title {
+  font-size: 1.8rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: white;
+  background-color: #6A42C2;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  background-color: #4A318C;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+main > h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #6A42C2;
+}
+
+/* Mensaje de visita (localStorage) */
+.visit-message-container {
+  margin-bottom: 20px;
+}
+
+.visit-message {
+  background-color: #8B5DFF;
+  color: white;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para las tarjetas */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: #6A42C2;
+  margin-bottom: 10px;
+}
+
+.card figure {
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.card figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card address {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.learn-more-btn {
+  background-color: #8B5DFF;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: #6A42C2;
+}
+
+/* ===================================================
+   GRID TEMPLATE AREAS (Diseño Responsivo Obligatorio)
+   =================================================== */
+
+/* 1. Vista Móvil (320px a 640px) */
+@media (min-width: 320px) and (max-width: 640px) {
+  .gallery-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    grid-template-areas:
+      "card1"
+      "card2"
+      "card3"
+      "card4"
+      "card5"
+      "card6"
+      "card7"
+      "card8";
+  }
+}
+
+/* 2. Vista Mediana (641px a 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gallery-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-template-areas:
+      "card1 card2"
+      "card3 card4"
+      "card5 card6"
+      "card7 card8";
+  }
+
+  /* Efecto Hover en imágenes para pantallas medianas y grandes */
+  .card figure img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .card figure img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+}
+
+/* 3. Vista Grande (1025px en adelante) */
+@media (min-width: 1025px) {
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    grid-template-areas:
+      "card1 card2 card3 card4"
+      "card5 card6 card7 card8";
+  }
+
+  /* Efecto Hover en imágenes para pantallas grandes */
+  .card figure img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .card figure img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+}
+
+/* Footer */
+footer {
+  background-color: #4a4e69;
+  color: white;
+  padding: 25px 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+  flex: 1 1 250px;
+}
+
+.footer-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-center img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-right {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-right {
+    text-align: center;
+  }
+}
