@@ -1,6 +1,180 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-#spotlights {
-    margin-top: 20px;
+/* Estilo general */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #FFFFFF;
+    color: #333333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header img {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+#site-title {
+    font-size: 2rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.nav-menu li a,
+.nav-menu li button {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6A42C2;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li button:hover {
+  background-color: #4A318C;
+}
+
+/* Secciones principales */
+main section {
+    background-color: #FFFFFF;
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+main section h2 {
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+main p, main ul {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+main ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Hero Banner y Cuadro Superpuesto */
+#hero {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Contenedor del mensaje sobre la imagen */
+.hero-overlay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de cierre (X) estilizado dentro del overlay */
+.close-hero-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-hero-btn:hover {
+  color: #ff4d4d;
+  transform: scale(1.15);
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 20px;
+  background-color: #6A42C2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #4A318C;
+}
+
+/* Secciones de Clima, Eventos y Spotlights */
+#weather, #events, #spotlights {
+    background-color: #FFFFFF;
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .spotlight-grid {
@@ -11,100 +185,63 @@
 }
 
 .spotlight-card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.spotlight-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
 }
 
 .spotlight-card img {
-    max-width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 12px;
-}
-
-.spotlight-card h3 {
-    color: #6A42C2;
-    margin-bottom: 8px;
-}
-
-.spotlight-card p {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    color: #444;
-}
-
-.spotlight-card a {
-    color: #8B5DFF;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.spotlight-card a:hover {
-    text-decoration: underline;
-}
-
-
-.weather-divider {
-    margin: 15px 0;
-    border: 0;
-    border-top: 1px solid #ddd;
-}
-
-.forecast-list {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 8px;
-}
-
-.forecast-list li {
-    font-size: 0.95rem;
-    padding: 4px 0;
-}
-
-
-.modal {
-  display: none; 
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); 
-}
-
-.modal-content {
-  background-color: #ffffff;
-  margin: 10% auto;
-  padding: 24px;
+  max-width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
+  margin-bottom: 10px;
 }
 
-.close-modal {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--primary-color);
-  cursor: pointer;
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #8B5DFF, #6A42C2);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-.close-modal:hover {
-  color: var(--secondary-color);
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+}
+
+.footer-left { text-align: left; }
+.footer-center { text-align: center; }
+.footer-right { text-align: right; }
+
+.footer-center img {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    header { flex-direction: column; text-align: center; }
+    
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-left, .footer-center, .footer-right {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .hero-overlay { top: 10%; padding: 15px; }
+    .cta-button { padding: 8px 16px; font-size: 0.9rem; }
 }
