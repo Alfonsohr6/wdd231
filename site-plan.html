@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Site Plan - Sacrament Meeting Program Generator</title>
+    <style>
+        /* CSS based on the official website color palette */
+        :root {
+            --primary-color: #1e3a8a; /* Tailwind Blue 900 */
+            --primary-light: #3b82f6; /* Tailwind Blue 500 */
+            --bg-body: #f1f5f9;       /* Slate 100 */
+            --bg-card: #ffffff;
+            --text-main: #1e293b;     /* Slate 800 */
+            --accent-amber: #fef3c7;  /* Amber 100 */
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-light);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            color: #93c5fd;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .color-box {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid var(--border-color);
+        }
+
+        .color-primary {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .color-bg {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        .color-accent {
+            background-color: var(--accent-amber);
+            color: #78350f;
+        }
+
+        .wireframe-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .wireframe-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .wireframe-box {
+            border: 2px dashed var(--border-color);
+            padding: 1rem;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 6px;
+        }
+
+        .wireframe-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Website Site Plan</h1>
+        <p>Web Design and Development Planning Document</p>
+    </header>
+
+    <main>
+
+        <!-- 1. SITE NAME -->
+        <section>
+            <h2>1. Site Name</h2>
+            <p><strong>Site Name:</strong> Sacrament Meeting Program Generator</p>
+            <p><strong>Reason for Selection:</strong> This name directly and clearly describes the primary function of the web application, designed for ward leaders and clerks who need to efficiently prepare and coordinate the weekly liturgical agenda.</p>
+            <p><strong>Optional Domain Available:</strong> <code>programasacramental.org</code></p>
+        </section>
+
+        <!-- 2. SITE PURPOSE -->
+        <section>
+            <h2>2. Site Purpose</h2>
+            <p>To provide an interactive and intuitive web tool for managing, real-time editing, and generating printable or PDF-formatted programs for sacrament meetings. It allows organizing assignments, announcements, hymns, and priesthood ordinances while ensuring compliance with institutional guidelines.</p>
+        </section>
+
+        <!-- 3. SCENARIOS -->
+        <section>
+            <h2>3. User Scenarios</h2>
+            <ul>
+                <li><strong>How can I quickly add the meeting hymns and verify if they are already available in the Gospel Library?</strong></li>
+                <li><strong>How do I generate and print support cards for ordinances (such as child blessings or confirmations) alongside the meeting program?</strong></li>
+            </ul>
+        </section>
+
+        <!-- 4. COLOR SCHEME -->
+        <section>
+            <h2>4. Color Scheme</h2>
+            <p>The site uses an institutional and accessible color palette that guarantees high contrast and visual clarity both on screen and in print version:</p>
+            
+            <div class="color-palette">
+                <div class="color-box color-primary">
+                    Primary Blue<br><code>#1e3a8a</code><br>(Headers and Bars)
+                </div>
+                <div class="color-box color-bg">
+                    Background Gray<br><code>#f1f5f9</code><br>(General Background)
+                </div>
+                <div class="color-box color-accent">
+                    Accent Amber<br><code>#fef3c7</code><br>(Notices and Cards)
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TYPOGRAPHY -->
+        <section>
+            <h2>5. Typography</h2>
+            <p>To ensure optimal performance and cross-platform compatibility, the site uses the native sans-serif system font stack provided by Tailwind CSS:</p>
+            <ul>
+                <li><strong>Primary Font (Body & Headings):</strong> <code>system-ui, -apple-system, sans-serif</code>. Used across the entire page body, forms, and main headers for clean and modern readability.</li>
+                <li><strong>Secondary Font (Liturgical Reading):</strong> <code>serif</code>. Applied specifically for printing sacrament prayers to emulate traditional book typography.</li>
+            </ul>
+        </section>
+
+        <!-- 6. WIREFRAME -->
+        <section>
+            <h2>6. Wireframes</h2>
+            <p>Black and white schematic design structure for mobile and desktop viewports:</p>
+            
+            <div class="wireframe-container">
+                <div class="wireframe-box">
+                    <h3>Mobile View (Small Viewport)</h3>
+                    <!-- Replace src with your image path or sketch if available -->
+                    <img src="https://via.placeholder.com/300x500/ffffff/000000?text=Mobile+Wireframe" alt="Mobile Viewport Wireframe">
+                    <p>Form and preview stacked vertically in a single column.</p>
+                </div>
+                <div class="wireframe-box">
+                    <h3>Desktop View (Large Viewport)</h3>
+                    <!-- Replace src with your image path or sketch if available -->
+                    <img src="https://via.placeholder.com/600x400/ffffff/000000?text=Desktop+Wireframe" alt="Desktop Viewport Wireframe">
+                    <p>Two-column layout: editing panel on the left and live preview/print sheet on the right.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Website Site Plan | WDD231 Individual Project</p>
+    </footer>
+
+</body>
+</html>
