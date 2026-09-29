@@ -1,796 +1,399 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Programa de Reunión Sacramental</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js CDN -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <style>
-        .evitar-corte {
-            break-inside: avoid;
-            page-break-inside: avoid;
-        }
-
-        @media print {
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            body { background-color: white !important; padding: 0 !important; margin: 0 !important; }
-            .page-break { page-break-before: always; }
-            .shadow-2xl, .shadow-lg, .shadow-md { box-shadow: none !important; }
-            .border-t-8 { border-top-width: 4px !important; }
-        }
-    </style>
+    <title>Sacramental Meeting Program Generator</title>
+    <!-- Custom Pure CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Main Application Module -->
+    <script type="module" src="app.js"></script>
+    <!-- Testing Tools Module -->
+    <script type="module" src="test-tools.js"></script>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen" x-data="programaSacramentalApp()">
+<body>
 
-    <!-- BARRA SUPERIOR -->
-    <header class="no-print bg-blue-900 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <!-- TOP HEADER NAVBAR -->
+    <header class="navbar no-print">
         <div>
-            <h1 class="text-xl font-bold">Generador de Programa de Reunión Sacramental</h1>
-            <p class="text-xs text-blue-200">Panel de edición e impresión reactiva</p>
+            <h1>Sacramental Meeting Program Generator</h1>
+            <p class="subtitle">Reactive Editing and Print Panel</p>
         </div>
-        <button 
-            @click="window.print()" 
-            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-lg shadow transition flex items-center gap-2">
-            🖨️ Generar / Imprimir PDF
-        </button>
+        <div class="header-actions">
+            <!-- Test controls injected by test-tools.js -->
+            <button id="btn-print" class="btn btn-success">
+                🖨️ Generate / Print PDF
+            </button>
+        </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="max-w-[1600px] mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- MAIN APP CONTAINER -->
+    <main class="app-container">
 
-        <!-- PANEL IZQUIERDO: FORMULARIO -->
-        <section class="no-print lg:col-span-5 bg-white p-6 rounded-xl shadow-md space-y-6 max-h-[85vh] overflow-y-auto border border-gray-200">
+        <!-- LEFT PANEL: EDITING FORM -->
+        <section class="form-panel no-print">
             
-            <!-- 0. DATOS ADMINISTRATIVOS -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2">0. Datos Administrativos</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Nombre de Barrio</label>
-                    <input type="text" x-model="programa.barrio" placeholder="Ej: Barrio Central" class="w-full border rounded p-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+            <!-- 0. ADMINISTRATIVE DATA -->
+            <h2 class="section-title">0. Administrative Data</h2>
+            <div class="form-grid grid-2">
+                <div class="form-group">
+                    <label for="input-ward">Ward Name</label>
+                    <input type="text" id="input-ward" placeholder="e.g. Central Ward">
                 </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Fecha</label>
-                    <input type="date" x-model="programa.fecha" class="w-full border rounded p-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                <div class="form-group">
+                    <label for="input-date">Date</label>
+                    <input type="date" id="input-date">
                 </div>
             </div>
-            <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
-                <label class="flex items-center gap-2 text-xs font-bold text-amber-900 cursor-pointer">
-                    <input type="checkbox" x-model="programa.esDomingoAyuno" class="rounded text-amber-600">
-                    ¿Es Domingo de Ayuno y Testimonios?
+            <div class="card card-warning">
+                <label class="checkbox-label font-bold">
+                    <input type="checkbox" id="input-fast-sunday">
+                    Is Fast and Testimony Sunday?
                 </label>
             </div>
 
-            <!-- 1 & 2. SALUDO Y AUTORIDADES -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">1 y 2. Autoridades</h2>
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Preside la Reunión</label>
-                    <input type="text" x-model="programa.preside" placeholder="Nombre completo de la autoridad" class="w-full border rounded p-2 text-sm">
+            <!-- 1 & 2. LEADERSHIP & AUTHORITIES -->
+            <h2 class="section-title">1 & 2. Authorities</h2>
+            <div class="form-stack">
+                <div class="form-group">
+                    <label for="input-presiding">Presiding Officer</label>
+                    <input type="text" id="input-presiding" placeholder="Full name of presiding authority">
                 </div>
 
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center">
-                        <label class="text-xs font-bold text-gray-700">Autoridades Acompañantes / Visitantes</label>
-                        <button @click="agregarAutoridad()" class="text-xs text-blue-600 hover:underline font-bold">+ Agregar Autoridad</button>
+                <div class="form-group">
+                    <div class="flex-between">
+                        <label class="font-bold">Visiting Authorities / Leaders</label>
+                        <button type="button" id="btn-add-authority" class="btn-link">+ Add Authority</button>
                     </div>
-                    <template x-for="(autoridad, index) in programa.autoridadesAcompanantes" :key="index">
-                        <div class="flex gap-2 items-center bg-gray-50 p-2 rounded border">
-                            <input type="text" x-model="autoridad.titulo" placeholder="Título/Llamamiento (Ej: Sumo Consejo)" class="w-1/2 border rounded p-1.5 text-xs">
-                            <input type="text" x-model="autoridad.nombre" placeholder="Nombre completo" class="w-1/2 border rounded p-1.5 text-xs">
-                            <button @click="removerAutoridad(index)" class="text-red-500 font-bold px-1 text-xs">✕</button>
-                        </div>
-                    </template>
+                    <div id="container-authorities" class="form-stack"></div>
                 </div>
             </div>
 
-            <!-- 3. ANUNCIOS -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">3. Anuncios del Barrio</h2>
-            <div class="space-y-3">
-                <div class="p-2.5 bg-blue-50 rounded border border-blue-200 text-xs text-blue-900 space-y-1">
-                    <p class="font-bold">Descubre (Compartir actividades del barrio):</p>
-                    <a href="https://www.churchofjesuschrist.org/study/manual/share-ward-activities-2025/01-share-ward-activities?lang=spa" target="_blank" class="text-blue-700 underline block break-all font-semibold">
-                        Ver guía para compartir servicios y actividades
+            <!-- 3. WARD ANNOUNCEMENTS -->
+            <h2 class="section-title">3. Ward Announcements</h2>
+            <div class="form-stack">
+                <div class="card card-info text-xs">
+                    <p class="font-bold">Share Ward Activities Guide:</p>
+                    <a href="https://www.churchofjesuschrist.org/study/manual/share-ward-activities-2025/01-share-ward-activities?lang=eng" target="_blank" class="external-link">
+                        View official guide for activities and service
                     </a>
                 </div>
 
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Anuncios de la Semana</label>
-                    <button @click="agregarAnuncio()" class="text-xs text-blue-600 hover:underline font-bold">+ Agregar Anuncio</button>
+                <div class="flex-between">
+                    <label class="font-bold">Weekly Announcements</label>
+                    <button type="button" id="btn-add-announcement" class="btn-link">+ Add Announcement</button>
                 </div>
-
-                <template x-for="(anuncio, index) in programa.anuncios" :key="index">
-                    <div class="p-3 bg-gray-50 rounded border space-y-2 relative">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-gray-600" x-text="'Anuncio #' + (index + 1)"></span>
-                            <button @click="removerAnuncio(index)" class="text-red-500 text-xs font-bold">Eliminar</button>
-                        </div>
-                        <input type="text" x-model="anuncio.titulo" placeholder="Título del Anuncio" class="w-full border rounded p-2 text-xs bg-white">
-                        <textarea x-model="anuncio.descripcion" placeholder="Descripción breve..." class="w-full border rounded p-2 text-xs bg-white h-16"></textarea>
-                        <input type="text" x-model="anuncio.fechaHora" placeholder="Fecha y Hora (Opcional)" class="w-full border rounded p-2 text-xs bg-white">
-                    </div>
-                </template>
+                <div id="container-announcements" class="form-stack"></div>
             </div>
 
-            <!-- 4. APERTURA -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">4. Apertura</h2>
-            <div class="space-y-3">
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center">
-                        <label class="text-xs font-bold text-gray-700">Himno de Apertura</label>
-                        <a href="https://www.churchofjesuschrist.org/study/music?lang=spa" target="_blank" class="text-xs text-blue-600 hover:underline">🔍 Buscar Himno</a>
+            <!-- 4. OPENING SERVICES -->
+            <h2 class="section-title">4. Opening</h2>
+            <div class="form-stack">
+                <div class="form-group">
+                    <div class="flex-between">
+                        <label class="font-bold">Opening Hymn</label>
+                        <button type="button" class="btn-link btn-search-hymn" data-target="openingHymn">🔍 Search Hymn API</button>
                     </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <input type="text" x-model="programa.himnoApertura.numero" placeholder="Nº" class="border rounded p-2 text-sm">
-                        <input type="text" x-model="programa.himnoApertura.titulo" placeholder="Título del Himno" class="col-span-2 border rounded p-2 text-sm">
+                    <div class="form-grid grid-3">
+                        <input type="text" id="opening-hymn-number" placeholder="No.">
+                        <input type="text" id="opening-hymn-title" class="col-span-2" placeholder="Hymn Title">
                     </div>
-                    <input type="text" x-model="programa.himnoApertura.urlOriginal" @input="sanitizarUrlHimno('himnoApertura', $event.target.value)" placeholder="Pegar enlace del himno (URL)" class="w-full border rounded p-2 text-xs text-gray-600">
-                    
-                    <label class="flex items-center gap-2 text-xs text-gray-700 mt-1">
-                        <input type="checkbox" x-model="programa.himnoApertura.subidoBiblioteca" class="rounded text-blue-600">
-                        Se subió el himno en la Biblioteca del Evangelio
+                    <input type="text" id="opening-hymn-url" placeholder="Paste Hymn URL" class="text-xs">
+                    <label class="checkbox-label text-xs">
+                        <input type="checkbox" id="opening-hymn-app">
+                        Hymn added to Gospel Library app
                     </label>
                 </div>
 
-                <div class="p-2 bg-yellow-50 border border-yellow-200 rounded text-[11px] text-yellow-900">
-                    💡 <strong>Nota:</strong> Un miembro del obispado (incluidos los secretarios) puede subir los himnos de la reunión sacramental en la Biblioteca del Evangelio para que los miembros con la app puedan ver los himnos a cantar cada reunión.
+                <div class="card card-tip text-xs">
+                    💡 <strong>Note:</strong> Ward leadership can publish sacramental hymns in the Gospel Library App for congregation access.
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Oración de Apertura (Orador)</label>
-                    <input type="text" x-model="programa.oracionApertura" placeholder="Nombre completo" class="w-full border rounded p-2 text-sm">
+                <div class="form-group">
+                    <label for="input-opening-prayer">Opening Prayer (Invocation)</label>
+                    <input type="text" id="input-opening-prayer" placeholder="Full name">
                 </div>
             </div>
 
-            <!-- 5. ASUNTOS DE BARRIO -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">5. Asuntos de Barrio y Estaca</h2>
+            <!-- 5. WARD BUSINESS -->
+            <h2 class="section-title">5. Ward & Stake Business</h2>
             
-            <!-- 5a. Sostenimientos y Relevos -->
-            <div class="space-y-2 p-3 bg-gray-50 rounded border">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Sostenimientos y Relevos</label>
-                    <button @click="agregarSostenimiento()" class="text-xs text-blue-600 font-bold hover:underline">+ Agregar</button>
+            <!-- Sustaining & Releases -->
+            <div class="card card-light form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs">Sustainings and Releases</label>
+                    <button type="button" id="btn-add-sustaining" class="btn-link text-xs">+ Add</button>
                 </div>
-                <template x-for="(item, idx) in programa.asuntos.sostenimientos" :key="idx">
-                    <div class="flex gap-2 items-center">
-                        <input type="text" x-model="item.nombre" placeholder="Nombre completo" class="w-1/2 border rounded p-1.5 text-xs bg-white">
-                        <input type="text" x-model="item.llamamiento" placeholder="Llamamiento / Asignación" class="w-1/2 border rounded p-1.5 text-xs bg-white">
-                        <button @click="removerSostenimiento(idx)" class="text-red-500 font-bold px-1 text-xs">✕</button>
-                    </div>
-                </template>
+                <div id="container-sustainings" class="form-stack"></div>
             </div>
 
-            <!-- 5b. Ordenaciones Sacerdocio Aarónico -->
-            <div class="space-y-2 p-3 bg-gray-50 rounded border">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Ordenaciones al Sacerdocio Aarónico</label>
-                    <button @click="agregarOrdenacion()" class="text-xs text-blue-600 font-bold hover:underline">+ Agregar</button>
+            <!-- Aaronic Priesthood Ordinations -->
+            <div class="card card-light form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs">Aaronic Priesthood Ordinations</label>
+                    <button type="button" id="btn-add-ordination" class="btn-link text-xs">+ Add</button>
                 </div>
-                <template x-for="(item, idx) in programa.asuntos.ordenaciones" :key="idx">
-                    <div class="flex gap-2 items-center">
-                        <input type="text" x-model="item.nombre" placeholder="Nombre completo del hermano" class="w-full border rounded p-1.5 text-xs bg-white">
-                        <button @click="removerOrdenacion(idx)" class="text-red-500 font-bold px-1 text-xs">✕</button>
-                    </div>
-                </template>
+                <div id="container-ordinations" class="form-stack"></div>
             </div>
 
-            <!-- 5c. Nuevos Miembros / Conversos -->
-            <div class="space-y-2 p-3 bg-gray-50 rounded border">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Bienvenida a Nuevos Miembros</label>
-                    <button @click="agregarNuevoMiembro()" class="text-xs text-blue-600 font-bold hover:underline">+ Agregar</button>
+            <!-- New Members -->
+            <div class="card card-light form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs">New Member Welcome</label>
+                    <button type="button" id="btn-add-new-member" class="btn-link text-xs">+ Add</button>
                 </div>
-                <template x-for="(item, idx) in programa.asuntos.nuevosMiembros" :key="idx">
-                    <div class="flex gap-2 items-center">
-                        <input type="text" x-model="item.nombre" placeholder="Nombre completo" class="w-full border rounded p-1.5 text-xs bg-white">
-                        <button @click="removerNuevoMiembro(idx)" class="text-red-500 font-bold px-1 text-xs">✕</button>
-                    </div>
-                </template>
+                <div id="container-new-members" class="form-stack"></div>
             </div>
 
-            <!-- 5d. Niños Bautizados (Mención) -->
-            <div class="space-y-2 p-3 bg-gray-50 rounded border">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Mención de Niños Bautizados y Confirmados</label>
-                    <button @click="agregarNinoBautizado()" class="text-xs text-blue-600 font-bold hover:underline">+ Agregar</button>
+            <!-- Baptized Children -->
+            <div class="card card-light form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs">Recently Baptized Children</label>
+                    <button type="button" id="btn-add-baptized-child" class="btn-link text-xs">+ Add</button>
                 </div>
-                <template x-for="(item, idx) in programa.asuntos.ninosBautizados" :key="idx">
-                    <div class="flex gap-2 items-center">
-                        <input type="text" x-model="item.nombre" placeholder="Nombre del niño/niña" class="w-full border rounded p-1.5 text-xs bg-white">
-                        <button @click="removerNinoBautizado(idx)" class="text-red-500 font-bold px-1 text-xs">✕</button>
-                    </div>
-                </template>
+                <div id="container-baptized-children" class="form-stack"></div>
             </div>
 
-            <!-- 5e. Nombre y Bendición de Niños -->
-            <div class="space-y-3 p-3 bg-yellow-50/60 border border-yellow-300 rounded">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-amber-900 uppercase">Dar Nombre y Bendecir Niños</label>
-                    <button @click="agregarBendicionNino()" class="text-xs text-amber-800 font-bold hover:underline">+ Agregar Niño</button>
+            <!-- Baby Blessings -->
+            <div class="card card-amber form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs text-amber-dark uppercase">Child Naming and Blessing</label>
+                    <button type="button" id="btn-add-blessing" class="btn-link btn-amber text-xs">+ Add Child</button>
                 </div>
-                <template x-for="(nino, idx) in programa.asuntos.bendicionesNinos" :key="idx">
-                    <div class="p-3 bg-white rounded border space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-amber-800" x-text="'Niño #' + (idx + 1)"></span>
-                            <button @click="removerBendicionNino(idx)" class="text-red-500 text-xs font-bold">Eliminar</button>
-                        </div>
-                        <input type="text" x-model="nino.nombre" placeholder="Nombre completo del niño/niña" class="w-full border rounded p-1.5 text-xs">
-                        <input type="text" x-model="nino.oficiante" placeholder="Oficiante principal" class="w-full border rounded p-1.5 text-xs">
-                        <input type="text" x-model="nino.participantes" placeholder="Otros participantes (opcional)" class="w-full border rounded p-1.5 text-xs">
-                        
-                        <label class="flex items-center gap-2 text-[11px] text-gray-700 font-semibold pt-1">
-                            <input type="checkbox" x-model="nino.conformidadFamilia" class="rounded text-amber-600">
-                            La familia está de acuerdo con este oficiante
-                        </label>
-                    </div>
-                </template>
+                <div id="container-blessings" class="form-stack"></div>
             </div>
 
-            <!-- 5f. Confirmaciones de Conversos -->
-            <div class="space-y-3 p-3 bg-green-50/60 border border-green-300 rounded">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-green-900 uppercase">Confirmación de Conversos</label>
-                    <button @click="agregarConfirmacion()" class="text-xs text-green-800 font-bold hover:underline">+ Agregar Converso</button>
+            <!-- Confirmations -->
+            <div class="card card-green form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs text-green-dark uppercase">Converse Confirmation</label>
+                    <button type="button" id="btn-add-confirmation" class="btn-link btn-green text-xs">+ Add Confirmation</button>
                 </div>
-                <template x-for="(conf, idx) in programa.asuntos.confirmaciones" :key="idx">
-                    <div class="p-3 bg-white rounded border space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-green-800" x-text="'Converso #' + (idx + 1)"></span>
-                            <button @click="removerConfirmacion(idx)" class="text-red-500 text-xs font-bold">Eliminar</button>
-                        </div>
-                        <input type="text" x-model="conf.nombre" placeholder="Nombre de la persona" class="w-full border rounded p-1.5 text-xs">
-                        <input type="text" x-model="conf.oficiante" placeholder="Oficiante" class="w-full border rounded p-1.5 text-xs">
-                        <input type="text" x-model="conf.participantes" placeholder="Otros participantes (opcional)" class="w-full border rounded p-1.5 text-xs">
-                    </div>
-                </template>
+                <div id="container-confirmations" class="form-stack"></div>
             </div>
 
-            <!-- 6. HIMNO SACRAMENTAL -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">6. Himno Sacramental</h2>
-            <div class="space-y-2">
-                <div class="flex justify-between items-center">
-                    <label class="text-xs font-bold text-gray-700">Himno Sacramental</label>
-                    <a href="https://www.churchofjesuschrist.org/study/music?lang=spa" target="_blank" class="text-xs text-blue-600 hover:underline">🔍 Buscar Himno</a>
+            <!-- 6. SACRAMENT HYMN -->
+            <h2 class="section-title">6. Sacrament Hymn</h2>
+            <div class="form-stack">
+                <div class="flex-between">
+                    <label class="font-bold text-xs">Sacrament Hymn</label>
+                    <button type="button" class="btn-link btn-search-hymn" data-target="sacramentHymn">🔍 Search Hymn API</button>
                 </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <input type="text" x-model="programa.himnoSacramental.numero" placeholder="Nº" class="border rounded p-2 text-sm">
-                    <input type="text" x-model="programa.himnoSacramental.titulo" placeholder="Título del Himno" class="col-span-2 border rounded p-2 text-sm">
+                <div class="form-grid grid-3">
+                    <input type="text" id="sacrament-hymn-number" placeholder="No.">
+                    <input type="text" id="sacrament-hymn-title" class="col-span-2" placeholder="Hymn Title">
                 </div>
-                <input type="text" x-model="programa.himnoSacramental.urlOriginal" @input="sanitizarUrlHimno('himnoSacramental', $event.target.value)" placeholder="Pegar enlace del himno (URL)" class="w-full border rounded p-2 text-xs text-gray-600">
-                <label class="flex items-center gap-2 text-xs text-gray-700 mt-1">
-                    <input type="checkbox" x-model="programa.himnoSacramental.subidoBiblioteca" class="rounded text-blue-600">
-                    Se subió el himno en la Biblioteca del Evangelio
+                <input type="text" id="sacrament-hymn-url" placeholder="Paste Hymn URL" class="text-xs">
+                <label class="checkbox-label text-xs">
+                    <input type="checkbox" id="sacrament-hymn-app">
+                    Hymn added to Gospel Library app
                 </label>
             </div>
 
-            <!-- 7. MENSAJES Y MUSICA INTERMEDIA -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">7. Mensajes y Música</h2>
-            <template x-if="programa.esDomingoAyuno">
-                <div class="p-3 bg-amber-100 border border-amber-300 rounded text-xs text-amber-900 font-semibold">
-                    ✨ Módulo desactivado: Es Domingo de Ayuno y Testimonios. El programa reservará automáticamente este espacio para la participación de la congregación.
+            <!-- 7. MESSAGES & MUSIC -->
+            <h2 class="section-title">7. Speakers and Music</h2>
+            <div id="fast-sunday-alert" class="card card-amber text-xs hidden">
+                ✨ Module Disabled: Fast & Testimony Sunday. Time is reserved for congregational testimonies.
+            </div>
+            <div id="speakers-music-module" class="form-stack">
+                <div class="flex-gap-2">
+                    <button type="button" id="btn-add-speaker" class="btn-link text-xs">+ Speaker</button>
+                    <button type="button" id="btn-add-intermediate-hymn" class="btn-link text-xs">+ Intermediate Hymn</button>
                 </div>
-            </template>
-            <template x-if="!programa.esDomingoAyuno">
-                <div class="space-y-3">
-                    <div class="flex gap-2">
-                        <button 
-                            @click="agregarElementoMensaje('discurso')" 
-                            class="text-xs text-blue-600 font-bold hover:underline">
-                            + Discursante
-                        </button>
-                        <button 
-                            @click="agregarElementoMensaje('himno')" 
-                            :disabled="programa.elementosMensajes.filter(e => e.tipo === 'himno').length >= 1"
-                            :class="programa.elementosMensajes.filter(e => e.tipo === 'himno').length >= 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:underline'"
-                            class="text-xs font-bold">
-                            + Himno Intermedio
-                        </button>
+                <div id="container-messages" class="form-stack"></div>
+            </div>
+
+            <!-- 8. CLOSING -->
+            <h2 class="section-title">8. Closing</h2>
+            <div class="form-stack">
+                <div class="form-group">
+                    <div class="flex-between">
+                        <label class="font-bold text-xs">Closing Hymn</label>
+                        <button type="button" class="btn-link btn-search-hymn" data-target="closingHymn">🔍 Search Hymn API</button>
                     </div>
-                    <template x-for="(elem, idx) in programa.elementosMensajes" :key="idx">
-                        <div class="p-2.5 bg-gray-50 rounded border space-y-2 relative">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-bold uppercase text-blue-800" x-text="elem.tipo === 'discurso' ? 'Discursante' : 'Himno Intermedio'"></span>
-                                <button @click="removerElementoMensaje(idx)" class="text-red-500 text-xs font-bold">✕</button>
-                            </div>
-
-                            <template x-if="elem.tipo === 'discurso'">
-                                <div class="space-y-2">
-                                    <input type="text" x-model="elem.nombre" placeholder="Nombre del Discursante" class="w-full border rounded p-1.5 text-xs bg-white">
-                                </div>
-                            </template>
-
-
-                            <template x-if="elem.tipo === 'himno'">
-                                <div class="space-y-2">
-                                    <div class="grid grid-cols-3 gap-1">
-                                        <input type="text" x-model="elem.numero" placeholder="Nº" class="border rounded p-1.5 text-xs bg-white">
-                                        <input type="text" x-model="elem.titulo" placeholder="Título" class="col-span-2 border rounded p-1.5 text-xs bg-white">
-                                    </div>
-                                    <input type="text" x-model="elem.urlOriginal" @input="sanitizarUrlHimno(elem, $event.target.value)" placeholder="Pegar enlace del himno (URL)" class="w-full border rounded p-1.5 text-xs bg-white">
-                                    <label class="flex items-center gap-2 text-xs text-gray-700 mt-1">
-                                        <!-- Se corrigió el x-model para que apunte a elem.subidoBiblioteca -->
-                                        <input type="checkbox" x-model="elem.subidoBiblioteca" class="rounded text-blue-600">
-                                        Se subió el himno en la Biblioteca del Evangelio
-                                    </label>
-                                </div>
-                            </template>
-                        </div>
-                    </template>
-                </div>
-            </template>
-
-            <!-- 8. CIERRE -->
-            <h2 class="text-lg font-bold text-blue-900 border-b pb-2 pt-2">8. Cierre</h2>
-            <div class="space-y-3">
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center">
-                        <label class="text-xs font-bold text-gray-700">Himno de Cierre</label>
-                        <a href="https://www.churchofjesuschrist.org/study/music?lang=spa" target="_blank" class="text-xs text-blue-600 hover:underline">🔍 Buscar Himno</a>
+                    <div class="form-grid grid-3">
+                        <input type="text" id="closing-hymn-number" placeholder="No.">
+                        <input type="text" id="closing-hymn-title" class="col-span-2" placeholder="Hymn Title">
                     </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <input type="text" x-model="programa.himnoCierre.numero" placeholder="Nº" class="border rounded p-2 text-sm">
-                        <input type="text" x-model="programa.himnoCierre.titulo" placeholder="Título del Himno" class="col-span-2 border rounded p-2 text-sm">
-                    </div>
-                    <input type="text" x-model="programa.himnoCierre.urlOriginal" @input="sanitizarUrlHimno('himnoCierre', $event.target.value)" placeholder="Pegar enlace del himno (URL)" class="w-full border rounded p-2 text-xs text-gray-600">
-                    <label class="flex items-center gap-2 text-xs text-gray-700 mt-1">
-                        <input type="checkbox" x-model="programa.himnoCierre.subidoBiblioteca" class="rounded text-blue-600">
-                        Se subió el himno en la Biblioteca del Evangelio
+                    <input type="text" id="closing-hymn-url" placeholder="Paste Hymn URL" class="text-xs">
+                    <label class="checkbox-label text-xs">
+                        <input type="checkbox" id="closing-hymn-app">
+                        Hymn added to Gospel Library app
                     </label>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Oración de Cierre (Orador)</label>
-                    <input type="text" x-model="programa.oracionCierre" placeholder="Nombre completo" class="w-full border rounded p-2 text-sm">
+                <div class="form-group">
+                    <label for="input-closing-prayer">Closing Prayer (Benediction)</label>
+                    <input type="text" id="input-closing-prayer" placeholder="Full name">
                 </div>
             </div>
 
         </section>
 
-        <!-- PANEL DERECHO: PREVISUALIZACIÓN E IMPRESIÓN -->
-        <section class="lg:col-span-7 bg-white p-8 shadow-2xl rounded-xl border-t-8 border-blue-900 print:w-full print:p-0 print:border-none">
+        <!-- RIGHT PANEL: PREVIEW & PRINT -->
+        <section class="preview-panel">
             
-            <!-- HOJA 1: PROGRAMA SACRAMENTAL -->
-            <div class="space-y-6">
-                <!-- Encabezado -->
-                <div class="text-center border-b-2 border-blue-900 pb-3">
-                    <h1 class="text-2xl font-black text-blue-900 uppercase tracking-widest">Reunión Sacramental</h1>
-                    <p class="text-sm font-semibold text-gray-700 mt-1" x-text="(programa.barrio ? 'Barrio ' + programa.barrio : 'Barrio: _________') + ' | ' + (programa.fecha || 'Fecha: _________')"></p>
-                    <template x-if="programa.esDomingoAyuno">
-                        <span class="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3 py-0.5 rounded-full mt-1 border border-amber-300">
-                            Domingo de Ayuno y Testimonios
-                        </span>
-                    </template>
+            <!-- SHEET 1: PROGRAM PREVIEW -->
+            <div id="sheet-program" class="preview-sheet">
+                <!-- Program Header -->
+                <div class="program-header">
+                    <h1 class="program-title">Sacramental Meeting</h1>
+                    <p id="preview-ward-date" class="program-subtitle">Ward: _________ | Date: _________</p>
+                    <span id="preview-fast-tag" class="tag tag-amber hidden">Fast and Testimony Sunday</span>
                 </div>
 
-                <!-- Saludo e Instrucción Fija -->
-                <div class="bg-gray-50 p-3 rounded border text-xs text-gray-700 italic text-center">
-                    "Damos una cordial bienvenida a todos los miembros y amigos que nos acompañan en nuestra reunión sacramental de hoy."
+                <!-- Welcome Message -->
+                <div class="welcome-box">
+                    "We extend a warm welcome to all members and friends attending our sacramental service today."
                 </div>
 
-                <!-- Autoridades -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs bg-gray-50 p-3 rounded border">
-                    <p><span class="font-bold text-blue-900">Preside:</span> <span x-text="programa.preside || '__________________________'"></span></p>
+                <!-- Leadership Info -->
+                <div class="info-grid">
+                    <p><strong>Presiding:</strong> <span id="preview-presiding">__________________________</span></p>
                     <div>
-                        <span class="font-bold text-blue-900">Acompañan:</span>
-                        <template x-if="programa.autoridadesAcompanantes.length === 0">
-                            <span> __________________________</span>
-                        </template>
-                        <ul class="list-disc list-inside mt-0.5">
-                            <template x-for="aut in programa.autoridadesAcompanantes" :key="aut.nombre">
-                                <li x-text="(aut.titulo ? aut.titulo + ': ' : '') + (aut.nombre || '___________')"></li>
-                            </template>
+                        <strong>Conducting / Visiting:</strong>
+                        <ul id="preview-authorities" class="bullet-list">
+                            <li>__________________________</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Anuncios del Barrio -->
-                <template x-if="programa.anuncios.length > 0">
-                    <div class="p-3 bg-blue-50/60 rounded border border-blue-200 text-xs space-y-2">
-                        <p class="font-bold text-blue-900 uppercase">Anuncios de la Semana</p>
-                        <template x-for="a in programa.anuncios" :key="a.titulo">
-                            <div class="border-b border-blue-100 pb-1">
-                                <p class="font-bold text-blue-950" x-text="a.titulo"></p>
-                                <p class="text-gray-700" x-text="a.descripcion"></p>
-                                <template x-if="a.fechaHora">
-                                    <p class="text-[11px] text-blue-800 italic" x-text="'📅 ' + a.fechaHora"></p>
-                                </template>
-                            </div>
-                        </template>
-                        <p class="text-[11px] font-semibold text-blue-900 pt-1 text-center italic">
-                            Recuerden que pueden ver nuestras actividades en la página del barrio.
-                        </p>
-                    </div>
-                </template>
+                <!-- Announcements Box -->
+                <div id="preview-announcements-box" class="card card-blue hidden">
+                    <p class="font-bold uppercase text-primary">Weekly Announcements</p>
+                    <div id="preview-announcements-list" class="form-stack"></div>
+                    <p class="text-xs italic text-center text-primary pt-2">Check the ward website for event updates.</p>
+                </div>
 
-                <!-- Desarrollo Litúrgico -->
-                <div class="space-y-3 text-sm">
-                    
-                    <!-- Apertura -->
-                    <div class="p-3 bg-gray-50 rounded border">
-                        <p class="font-bold text-blue-900 uppercase text-xs mb-1">Apertura</p>
+                <!-- Program Agenda Details -->
+                <div class="agenda-stack">
+                    <!-- Opening -->
+                    <div class="agenda-item">
+                        <p class="agenda-label">Opening</p>
                         <p class="text-xs">
-                            Himno: 
-                            <template x-if="programa.himnoApertura.urlLimpia">
-                                <a :href="programa.himnoApertura.urlLimpia" target="_blank" class="text-blue-600 underline font-semibold" x-text="(programa.himnoApertura.numero ? '#' + programa.himnoApertura.numero + ' - ' : '') + (programa.himnoApertura.titulo || '__________________________')"></a>
-                            </template>
-                            <template x-if="!programa.himnoApertura.urlLimpia">
-                                <span x-text="(programa.himnoApertura.numero ? '#' + programa.himnoApertura.numero + ' - ' : '') + (programa.himnoApertura.titulo || '__________________________')"></span>
-                            </template>
+                            Hymn: <span id="preview-opening-hymn">__________________________</span>
                         </p>
-                        <template x-if="programa.himnoApertura.subidoBiblioteca">
-                            <p class="text-[11px] text-blue-800 font-medium italic mt-0.5">📌 Mencione que pueden ver este himno en la Biblioteca del Evangelio.</p>
-                        </template>
-                        <p class="text-xs mt-1">Oración de Apertura: <span x-text="programa.oracionApertura || '__________________________'"></span></p>
+                        <p id="preview-opening-app-tag" class="app-tag hidden">📌 Available in Gospel Library app.</p>
+                        <p class="text-xs">Invocation: <span id="preview-opening-prayer">__________________________</span></p>
                     </div>
 
-                    <!-- Asuntos del Barrio -->
-                    <div class="p-3 bg-gray-50 rounded border space-y-2">
-                        <p class="font-bold text-blue-900 uppercase text-xs">Asuntos de Barrio y Estaca</p>
-                        
-                        <!-- Sostenimientos -->
-                        <template x-if="programa.asuntos.sostenimientos.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-gray-700">Sostenimiento y Relevo de Oficiales y Maestros:</p>
-                                <template x-for="s in programa.asuntos.sostenimientos" :key="s.nombre">
-                                    <p class="ml-2">• <span x-text="s.nombre"></span> - <span class="italic" x-text="s.llamamiento"></span></p>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Sacerdocio Aarónico -->
-                        <template x-if="programa.asuntos.ordenaciones.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-gray-700">Propuestos para ordenación al Sacerdocio Aarónico:</p>
-                                <template x-for="o in programa.asuntos.ordenaciones" :key="o.nombre">
-                                    <p class="ml-2">• <span x-text="o.nombre"></span></p>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Nuevos Miembros -->
-                        <template x-if="programa.asuntos.nuevosMiembros.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-gray-700">Bienvenida a nuevos miembros del barrio (dar bienvenida con la mano):</p>
-                                <template x-for="nm in programa.asuntos.nuevosMiembros" :key="nm.nombre">
-                                    <p class="ml-2">• <span x-text="nm.nombre"></span></p>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Niños Bautizados -->
-                        <template x-if="programa.asuntos.ninosBautizados.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-gray-700">Reconocimiento de niños bautizados y confirmados recientemente:</p>
-                                <template x-for="nb in programa.asuntos.ninosBautizados" :key="nb.nombre">
-                                    <p class="ml-2">• <span x-text="nb.nombre"></span></p>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Bendición de Niños -->
-                        <template x-if="programa.asuntos.bendicionesNinos.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-amber-900">Dar nombre y bendecir a niños:</p>
-                                <template x-for="bn in programa.asuntos.bendicionesNinos" :key="bn.nombre">
-                                    <p class="ml-2">
-                                        • <span class="font-bold" x-text="bn.nombre"></span> 
-                                        (Oficiante: <span x-text="bn.oficiante"></span><template x-if="bn.participantes"><span>, Participantes: <span x-text="bn.participantes"></span></span></template>)
-                                    </p>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Confirmaciones -->
-                        <template x-if="programa.asuntos.confirmaciones.length > 0">
-                            <div class="text-xs">
-                                <p class="font-semibold text-green-900">Confirmación de nuevos conversos:</p>
-                                <template x-for="c in programa.asuntos.confirmaciones" :key="c.nombre">
-                                    <p class="ml-2">
-                                        • <span class="font-bold" x-text="c.nombre"></span> 
-                                        (Oficiante: <span x-text="c.oficiante"></span><template x-if="c.participantes"><span>, Participantes: <span x-text="c.participantes"></span></span></template>)
-                                    </p>
-                                </template>
-                            </div>
-                        </template>
+                    <!-- Ward Business -->
+                    <div class="agenda-item space-y-2">
+                        <p class="agenda-label">Ward & Stake Business</p>
+                        <div id="preview-business-content" class="text-xs form-stack">
+                            <p class="italic text-gray-500">No pending ward business recorded.</p>
+                        </div>
                     </div>
 
-                    <!-- Santa Cena -->
-                    <div class="p-3 bg-gray-50 rounded border space-y-1">
-                        <p class="font-bold text-blue-900 uppercase text-xs">Administración de la Santa Cena</p>
+                    <!-- Sacrament Service -->
+                    <div class="agenda-item">
+                        <p class="agenda-label">Administration of the Sacrament</p>
                         <p class="text-xs">
-                            Himno Sacramental: 
-                            <template x-if="programa.himnoSacramental.urlLimpia">
-                                <a :href="programa.himnoSacramental.urlLimpia" target="_blank" class="text-blue-600 underline font-semibold" x-text="(programa.himnoSacramental.numero ? '#' + programa.himnoSacramental.numero + ' - ' : '') + (programa.himnoSacramental.titulo || '__________________________')"></a>
-                            </template>
-                            <template x-if="!programa.himnoSacramental.urlLimpia">
-                                <span x-text="(programa.himnoSacramental.numero ? '#' + programa.himnoSacramental.numero + ' - ' : '') + (programa.himnoSacramental.titulo || '__________________________')"></span>
-                            </template>
+                            Sacrament Hymn: <span id="preview-sacrament-hymn">__________________________</span>
                         </p>
-                        <template x-if="programa.himnoSacramental.subidoBiblioteca">
-                            <p class="text-[11px] text-blue-800 font-medium italic">📌 Mencione que pueden ver este himno en la Biblioteca del Evangelio.</p>
-                        </template>
-                        <p class="text-xs italic text-gray-600 pt-1">Bendición y reparto de la Santa Cena por el Sacerdocio.</p>
+                        <p id="preview-sacrament-app-tag" class="app-tag hidden">📌 Available in Gospel Library app.</p>
+                        <p class="text-xs italic text-gray-600">Blessing and passing of the Sacrament by Priesthood holders.</p>
                     </div>
 
-                    <!-- Mensajes / Testimonios -->
-                    <div class="p-3 bg-gray-50 rounded border space-y-2">
-                        <p class="font-bold text-blue-900 uppercase text-xs">Mensajes del Evangelio</p>
-                        
-                        <template x-if="programa.esDomingoAyuno">
-                            <p class="text-xs italic text-gray-700">Tiempo dedicado para que los miembros de la congregación compartan sus testimonios.</p>
-                        </template>
-
-                        <template x-if="!programa.esDomingoAyuno">
-                            <div class="space-y-1 text-xs">
-                                <template x-for="elem in programa.elementosMensajes" :key="elem.nombre || elem.titulo">
-                                    <div>
-                                        <template x-if="elem.tipo === 'discurso'">
-                                            <p class="ml-2">• <span class="font-semibold">Discurso:</span> <span x-text="elem.nombre || '__________________________'"></span></p>
-                                        </template>
-                                        <template x-if="elem.tipo === 'himno'">
-                                            <p class="ml-2 text-blue-800">• <span class="font-semibold">Himno Congregacional:</span> <span x-text="(elem.numero ? '#' + elem.numero + ' - ' : '') + (elem.titulo || '__________________________')"></span></p>
-                                        </template>
-                                    </div>
-                                </template>
-                            </div>
-                        </template>
+                    <!-- Messages -->
+                    <div class="agenda-item">
+                        <p class="agenda-label">Gospel Messages</p>
+                        <div id="preview-messages-list" class="text-xs form-stack">
+                            <p>• <strong>Speaker:</strong> __________________________</p>
+                        </div>
                     </div>
 
-                    <!-- Cierre -->
-                    <div class="p-3 bg-gray-50 rounded border space-y-1">
-                        <p class="font-bold text-blue-900 uppercase text-xs">Cierre</p>
+                    <!-- Closing -->
+                    <div class="agenda-item">
+                        <p class="agenda-label">Closing</p>
                         <p class="text-xs">
-                            Himno Final: 
-                            <template x-if="programa.himnoCierre.urlLimpia">
-                                <a :href="programa.himnoCierre.urlLimpia" target="_blank" class="text-blue-600 underline font-semibold" x-text="(programa.himnoCierre.numero ? '#' + programa.himnoCierre.numero + ' - ' : '') + (programa.himnoCierre.titulo || '__________________________')"></a>
-                            </template>
-                            <template x-if="!programa.himnoCierre.urlLimpia">
-                                <span x-text="(programa.himnoCierre.numero ? '#' + programa.himnoCierre.numero + ' - ' : '') + (programa.himnoCierre.titulo || '__________________________')"></span>
-                            </template>
+                            Closing Hymn: <span id="preview-closing-hymn">__________________________</span>
                         </p>
-                        <template x-if="programa.himnoCierre.subidoBiblioteca">
-                            <p class="text-[11px] text-blue-800 font-medium italic">📌 Mencione que pueden ver este himno en la Biblioteca del Evangelio.</p>
-                        </template>
-                        <p class="text-xs">Oración de Cierre: <span x-text="programa.oracionCierre || '__________________________'"></span></p>
+                        <p id="preview-closing-app-tag" class="app-tag hidden">📌 Available in Gospel Library app.</p>
+                        <p class="text-xs">Benediction: <span id="preview-closing-prayer">__________________________</span></p>
                     </div>
-
                 </div>
             </div>
 
-            <!-- HOJA 2: ANEXO DE TARJETAS DE APOYO -->
-            <div class="page-break pt-8 mt-8 border-t-2 border-dashed border-gray-300 print:border-none">
-                <h2 class="text-center font-bold text-blue-900 uppercase tracking-wider mb-6 text-base">Anexo: Tarjetas de Apoyo para Oficiantes</h2>
+            <!-- SHEET 2: ORDINANCE CARDS -->
+            <div id="sheet-ordinances" class="preview-sheet page-break">
+                <h2 class="ordinance-sheet-title">Appendix: Officiant Support Cards</h2>
 
-                <!-- TARJETAS AMARILLAS: BENDICIÓN DE NIÑOS -->
-                <template x-if="programa.asuntos.bendicionesNinos.length > 0">
-                    <div class="space-y-4 mb-6">
-                        <p class="text-xs font-bold text-amber-800 uppercase tracking-widest border-b border-amber-200 pb-1">Ordenanza: Nombre y Bendición de Niños</p>
-                        <div class="grid grid-cols-1 gap-4">
-                            <template x-for="nino in programa.asuntos.bendicionesNinos" :key="nino.nombre">
-                                <div class="evitar-corte bg-amber-50 p-5 rounded-lg border-2 border-amber-400 text-amber-950 shadow-sm space-y-2">
-                                    <p class="text-xs font-bold uppercase tracking-widest text-amber-700">Tarjeta de Apoyo (Bendición de Niño)</p>
-                                    <p class="text-xs font-semibold">Nombre del niño/niña: <span class="text-base font-bold underline" x-text="nino.nombre || '__________________________'"></span></p>
-                                    <p class="text-xs">Oficiante: <span class="font-bold" x-text="nino.oficiante || '__________________________'"></span></p>
-                                    <template x-if="nino.participantes">
-                                        <p class="text-xs">Participantes: <span x-text="nino.participantes"></span></p>
-                                    </template>
-                                    <div class="bg-white p-3 rounded border border-amber-300 text-xs italic space-y-1">
-                                        <p>"Padre Celestial, por la autoridad del Sacerdocio de Melquisedec que poseo (poseemos), le doy (damos) el nombre de <strong x-text="nino.nombre || '[Nombre del niño]'"></strong> y te damos una bendición..."</p>
-                                        <p class="text-[11px] text-amber-800 font-semibold not-italic">👉 (Pronuncie la bendición conforme lo guíe el Espíritu Santo)</p>
-                                        <p>"...en el nombre de Jesucristo. Amén."</p>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </template>
+                <!-- BLESSING CARDS -->
+                <div id="preview-blessings-section" class="hidden margin-bottom-lg">
+                    <p class="ordinance-category-title amber-text">Ordinance: Child Naming and Blessing</p>
+                    <div id="preview-blessings-cards" class="card-grid"></div>
+                </div>
 
-                <!-- TARJETAS VERDES: CONFIRMACIONES -->
-                <template x-if="programa.asuntos.confirmaciones.length > 0">
-                    <div class="space-y-4 mb-6">
-                        <p class="text-xs font-bold text-green-800 uppercase tracking-widest border-b border-green-200 pb-1">Ordenanza: Confirmación de Conversos</p>
-                        <div class="grid grid-cols-1 gap-4">
-                            <template x-for="conf in programa.asuntos.confirmaciones" :key="conf.nombre">
-                                <div class="evitar-corte bg-green-50 p-5 rounded-lg border-2 border-green-500 text-green-950 shadow-sm space-y-2">
-                                    <p class="text-xs font-bold uppercase tracking-widest text-green-700">Tarjeta de Apoyo (Confirmación)</p>
-                                    <p class="text-xs font-semibold">Persona a confirmar: <span class="text-base font-bold underline" x-text="conf.nombre || '__________________________'"></span></p>
-                                    <p class="text-xs">Oficiante: <span class="font-bold" x-text="conf.oficiante || '__________________________'"></span></p>
-                                    <template x-if="conf.participantes">
-                                        <p class="text-xs">Participantes: <span x-text="conf.participantes"></span></p>
-                                    </template>
-                                    <div class="bg-white p-3 rounded border border-green-300 text-xs italic text-center">
-                                        "Por la autoridad del Sacerdocio de Melquisedec que poseo, te confirmo miembro de La Iglesia de Jesucristo de los Santos de los Últimos Días y te digo: Recibe el Espíritu Santo. En el nombre de Jesucristo. Amén."
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </template>
+                <!-- CONFIRMATION CARDS -->
+                <div id="preview-confirmations-section" class="hidden margin-bottom-lg">
+                    <p class="ordinance-category-title green-text">Ordinance: Confirmation of New Members</p>
+                    <div id="preview-confirmations-cards" class="card-grid"></div>
+                </div>
 
-               <!-- TARJETAS PERMANENTES SANTA CENA REFORMATEADAS PARA DOBLE CARA / TAMAÑO GRANDE -->
-                <div class="evitar-corte border-t-2 border-gray-300 pt-6 mt-8">
-                    <p class="text-xs font-bold text-gray-700 uppercase tracking-widest border-b border-gray-200 pb-2 mb-6 text-center">
-                        Oraciones Oficiales de la Santa Cena (Formato Doble Cara / Grande)
-                    </p>
+                <!-- SACRAMENT PRAYERS DOUBLE SIDED -->
+                <div class="sacrament-prayers-container page-break-avoid">
+                    <p class="ordinance-category-title text-center">Official Sacrament Prayers (Large Double-Sided Format)</p>
                     
-                    <!-- Grid ajustado para mayor altura y legible al doblar -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[420px]">
-                        
-                        <!-- TARJETA PAN (CAFÉ / AMBER) -->
-                        <div class="p-8 rounded-xl border-4 border-amber-950 bg-amber-900 text-amber-50 shadow-md flex flex-col justify-between">
+                    <div class="prayer-cards-grid">
+                        <!-- BREAD PRAYER CARD -->
+                        <div class="prayer-card bread-card">
                             <div>
-                                <div class="border-b-2 border-amber-700/80 pb-2 mb-4 flex justify-between items-center">
-                                    <p class="text-sm font-black uppercase tracking-widest text-amber-200">BENDICIÓN DEL PAN</p>
-                                    <span class="text-[10px] bg-amber-950 px-2 py-0.5 rounded text-amber-300 border border-amber-800">Cara A</span>
+                                <div class="prayer-header">
+                                    <p class="prayer-title">BLESSING ON THE BREAD</p>
+                                    <span class="side-badge">Side A</span>
                                 </div>
-                                <p class="text-sm sm:text-base leading-relaxed text-justify font-serif tracking-wide pt-2">
-                                    "Oh Dios, Padre Eterno, en el nombre de Jesucristo, tu Hijo, te pedimos que bendigas y santifiques este pan para las almas de todos los que participen de él, para que lo coman en memoria del cuerpo de tu Hijo, y testifiquen ante ti, oh Dios, Padre Eterno, que están dispuestos a tomar sobre sí el nombre de tu Hijo, y a recordarle siempre, y a guardar sus mandamientos que él les ha dado, para que siempre puedan tener su Espíritu consigo. Amén."
+                                <p class="prayer-body">
+                                    "O God, the Eternal Father, we ask thee in the name of his Son, Jesus Christ, to bless and sanctify this bread to the souls of all those who partake of it, that they may eat in remembrance of the body of thy Son, and witness unto thee, O God, the Eternal Father, that they are willing to take upon them the name of thy Son, and always remember him and keep his commandments which he has given them; that they may always have his Spirit to be with them. Amen."
                                 </p>
                             </div>
-                            <p class="text-xs text-amber-300 font-semibold italic text-right mt-6">
-                                Doctrina y Convenios 20:77
-                            </p>
+                            <p class="prayer-citation">Doctrine and Covenants 20:77</p>
                         </div>
-                    
-                        <!-- TARJETA AGUA (ROJO) -->
-                        <div class="p-8 rounded-xl border-4 border-red-950 bg-red-900 text-red-50 shadow-md flex flex-col justify-between">
+
+                        <!-- WATER PRAYER CARD -->
+                        <div class="prayer-card water-card">
                             <div>
-                                <div class="border-b-2 border-red-700/80 pb-2 mb-4 flex justify-between items-center">
-                                    <p class="text-sm font-black uppercase tracking-widest text-red-200">BENDICIÓN DEL AGUA</p>
-                                    <span class="text-[10px] bg-red-950 px-2 py-0.5 rounded text-red-300 border border-red-800">Cara B</span>
+                                <div class="prayer-header">
+                                    <p class="prayer-title">BLESSING ON THE WATER</p>
+                                    <span class="side-badge">Side B</span>
                                 </div>
-                                <p class="text-sm sm:text-base leading-relaxed text-justify font-serif tracking-wide pt-2">
-                                    "Oh Dios, Padre Eterno, en el nombre de Jesucristo, tu Hijo, te pedimos que bendigas y santifiques esta agua para las almas de todos los que la beban, para que lo hagan en memoria de la sangre de tu Hijo, que por ellos se derramó; para que testifiquen ante ti, oh Dios, Padre Eterno, que siempre se acuerdan de él, para que puedan tener su Espíritu consigo. Amén."
+                                <p class="prayer-body">
+                                    "O God, the Eternal Father, we ask thee in the name of his Son, Jesus Christ, to bless and sanctify this water to the souls of all those who drink of it, that they may do it in remembrance of the blood of thy Son, which was shed for them; that they may witness unto thee, O God, the Eternal Father, that they do always remember him, that they may have his Spirit to be with them. Amen."
                                 </p>
                             </div>
-                            <p class="text-xs text-red-300 font-semibold italic text-right mt-6">
-                                Doctrina y Convenios 20:79
-                            </p>
+                            <p class="prayer-citation">Doctrine and Covenants 20:79</p>
                         </div>
-                    
                     </div>
                 </div>
+
+            </div>
 
         </section>
 
     </main>
 
-    <!-- LÓGICA CON ALPINE.JS -->
-    <script>
-        // Prevenir salida accidental sin guardar datos
-        window.addEventListener('beforeunload', (event) => {
-            event.preventDefault();
-            event.returnValue = '';
-        });
+    <!-- FOOTER LINKING DEMO VIDEO AND ATTRIBUTIONS -->
+    <footer class="app-footer no-print">
+        <p>&copy; 2026 Sacramental Meeting Program App | Built for WDD231</p>
+        <p>
+            <a href="https://youtube.com" target="_blank" id="video-demo-link">🎥 Watch Video Demonstration</a> | 
+            <a href="#attributions" id="attributions-link">Attributions & Sources</a>
+        </p>
+    </footer>
 
-        function programaSacramentalApp() {
-            return {
-                programa: {
-                    barrio: '',
-                    fecha: '',
-                    esDomingoAyuno: false,
-                    preside: '',
-                    autoridadesAcompanantes: [],
-                    anuncios: [],
-                    himnoApertura: { numero: '', titulo: '', urlOriginal: '', urlLimpia: '', subidoBiblioteca: false },
-                    oracionApertura: '',
-                    asuntos: {
-                        sostenimientos: [],
-                        ordenaciones: [],
-                        nuevosMiembros: [],
-                        ninosBautizados: [],
-                        bendicionesNinos: [],
-                        confirmaciones: []
-                    },
-                    himnoSacramental: { numero: '', titulo: '', urlOriginal: '', urlLimpia: '', subidoBiblioteca: false },
-                    elementosMensajes: [
-                        { tipo: 'discurso', nombre: '' }
-                    ],
-                    himnoCierre: { numero: '', titulo: '', urlOriginal: '', urlLimpia: '', subidoBiblioteca: false },
-                    oracionCierre: ''
-                },
-            
-                // Métodos para Autoridades
-                agregarAutoridad() {
-                    this.programa.autoridadesAcompanantes.push({ titulo: '', nombre: '' });
-                },
-                removerAutoridad(index) {
-                    this.programa.autoridadesAcompanantes.splice(index, 1);
-                },
-            
-                // Métodos para Anuncios
-                agregarAnuncio() {
-                    this.programa.anuncios.push({ titulo: '', descripcion: '', fechaHora: '' });
-                },
-                removerAnuncio(index) {
-                    this.programa.anuncios.splice(index, 1);
-                },
-            
-                // Métodos para Asuntos de Barrio
-                agregarSostenimiento() {
-                    this.programa.asuntos.sostenimientos.push({ nombre: '', llamamiento: '' });
-                },
-                removerSostenimiento(index) {
-                    this.programa.asuntos.sostenimientos.splice(index, 1);
-                },
-                agregarOrdenacion() {
-                    this.programa.asuntos.ordenaciones.push({ nombre: '' });
-                },
-                removerOrdenacion(index) {
-                    this.programa.asuntos.ordenaciones.splice(index, 1);
-                },
-                agregarNuevoMiembro() {
-                    this.programa.asuntos.nuevosMiembros.push({ nombre: '' });
-                },
-                removerNuevoMiembro(index) {
-                    this.programa.asuntos.nuevosMiembros.splice(index, 1);
-                },
-                agregarNinoBautizado() {
-                    this.programa.asuntos.ninosBautizados.push({ nombre: '' });
-                },
-                removerNinoBautizado(index) {
-                    this.programa.asuntos.ninosBautizados.splice(index, 1);
-                },
-                agregarBendicionNino() {
-                    this.programa.asuntos.bendicionesNinos.push({
-                        nombre: '',
-                        oficiante: '',
-                        participantes: '',
-                        conformidadFamilia: false
-                    });
-                },
-                removerBendicionNino(index) {
-                    this.programa.asuntos.bendicionesNinos.splice(index, 1);
-                },
-                agregarConfirmacion() {
-                    this.programa.asuntos.confirmaciones.push({
-                        nombre: '',
-                        oficiante: '',
-                        participantes: ''
-                    });
-                },
-                removerConfirmacion(index) {
-                    this.programa.asuntos.confirmaciones.splice(index, 1);
-                },
-            
-                // Métodos para Mensajes e Himnos Intermedios
-                agregarElementoMensaje(tipo) {
-                    if (tipo === 'discurso') {
-                        this.programa.elementosMensajes.push({ tipo: 'discurso', nombre: '' });
-                    } else if (tipo === 'himno') {
-                        const cantidadHimnos = this.programa.elementosMensajes.filter(elem => elem.tipo === 'himno').length;
-                    
-                        if (cantidadHimnos >= 1) {
-                            alert('Solo se permite un máximo de 1 Himno Intermedio por programa.');
-                            return;
-                        }
-                    
-                        this.programa.elementosMensajes.push({ tipo: 'himno', numero: '', titulo: '', urlLimpia: '' });
-                    }
-                },
-                removerElementoMensaje(index) {
-                    this.programa.elementosMensajes.splice(index, 1);
-                },
-            
-                // Sanitización mejorada y segura de URLs
-                sanitizarUrlHimno(objetoTarget, textoEntrada) {
-                    const regexUrl = /(https?:\/\/[^\s]+)/g;
-                    const coincidencias = textoEntrada ? textoEntrada.match(regexUrl) : null;
+    <!-- ACCESSIBLE MODAL DIALOG FOR HYMN SEARCH (FETCH API & DOM MANIPULATION) -->
+    <dialog id="hymn-modal" class="modal-dialog">
+        <div class="modal-header">
+            <h3>Search Hymns (API Fetch Demo)</h3>
+            <button id="btn-close-modal" class="btn-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input type="text" id="modal-search-input" placeholder="Type hymn number or title..." class="w-full">
+            <div id="modal-hymns-results" class="hymn-list-container">
+                <!-- Results rendered dynamically from hymns.json via Fetch API -->
+            </div>
+        </div>
+    </dialog>
 
-                    if (typeof objetoTarget === 'string' && this.programa[objetoTarget]) {
-                        this.programa[objetoTarget].urlLimpia = coincidencias ? coincidencias[0] : '';
-                    } else if (typeof objetoTarget === 'object' && objetoTarget !== null) {
-                        objetoTarget.urlLimpia = coincidencias ? coincidencias[0] : '';
-                    }
-                }
-            }
-        }
-    </script>
-    <script src="prueba.js"></script>
 </body>
-
 </html>
